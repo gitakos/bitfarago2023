@@ -2,7 +2,6 @@ import data from "./data.json" assert { type: "json" };
 console.log(data);
 // console.log(document.body.getElementsByTagName("main"));
 
-
 const imageContainer = document.getElementById("image-container");
 const images = Array.from(imageContainer.querySelectorAll("img"));
 images.forEach((img, index) => {
@@ -15,51 +14,40 @@ let currentIndex = 0;
 let isSwiping = false;
 let startX = 0;
 let currentX = 0;
-let image1Translation = 0;
-let image2Translation = 0;
+let imageTranslation = 0;
 
-const image1 = images[0];
-const image2 = images[1];
+const image = images[0];
 
+// kell az alap kép
 loadImages(currentIndex);
 
+// tudjuk hogy rálett e nyomva
 imageContainer.addEventListener("mousedown", startSwipe);
 imageContainer.addEventListener("touchstart", startSwipe);
 
 function loadImages(index) {
-  // Fade out the current image
-  image1.style.opacity = 0;
+  // ami már ellet huzva tüntessük ell
+  image.style.opacity = 0;
 
   setTimeout(function () {
-    // Set the new image source
-    image1.src = images[index].src;
-
-    // Preload the next image
-    const nextIndex = (index + 1) % images.length;
-    const nextImage = new Image();
-    nextImage.src = images[nextIndex].src;
-
-    // Show the new image with a fade-in effect
-    setTimeout(function () {
-      image1.style.opacity = 1;
-    }, 100); // Adjust the delay as needed
-
-    // Reset the translation of both images after the transition
-    image1Translation = 0;
-    image2Translation = 0;
-    image1.style.transform = `translateX(${image1Translation}px)`;
-    image2.style.transform = `translateX(${image2Translation}px)`;
-  }, 600); // Adjust the duration of the transition
+    image.src = images[index].src; // kell az új kép src
+    image.style.opacity = 1;
+  }, 600); // változás hossza 
 }
 
 function startSwipe(event) {
   isSwiping = true;
+
+  //kezdeti egér pozi
   startX = event.clientX || event.touches[0].clientX;
   currentX = startX;
 
+  // rányomtunk kell tudni hogy merre mozog az egér
   document.addEventListener("mousemove", swipe);
+  //mobil
   document.addEventListener("touchmove", swipe);
 
+  // kell tudni mikor engedjük el az egeret
   document.addEventListener("mouseup", endSwipe);
   document.addEventListener("touchend", endSwipe);
 }
@@ -67,48 +55,48 @@ function startSwipe(event) {
 function swipe(event) {
   if (!isSwiping) return;
 
-  const x = event.clientX || event.touches[0].clientX;
-  const offsetX = x - currentX;
+  const x = event.clientX || event.touches[0].clientX; // hol az egér
+  const offsetX = x - currentX; // most balra vagy jobbra megyünk
 
-  // Calculate the maximum allowed movement based on the current translation
-  const maxOffsetX = 75 - image1Translation; // Adjust as needed
-  const minOffsetX = -75 - image1Translation; // Adjust as needed
+  // menyire mehet el a kép balra meg jobbra
+  const maxOffsetX = 75 - imageTranslation;
+  const minOffsetX = -75 - imageTranslation;
 
-  // Clamp the offsetX value within the limits
+  // csak anyire lehessen altolni amenyi a limit
   const clampedOffsetX = Math.min(Math.max(offsetX, minOffsetX), maxOffsetX);
 
-  image1Translation += clampedOffsetX;
-  image2Translation += clampedOffsetX;
-
-  image1.style.transform = `translateX(${image1Translation}px)`;
-  image2.style.transform = `translateX(${image2Translation}px)`;
-
+  imageTranslation += clampedOffsetX;
+  image.style.transform = `translateX(${imageTranslation}px)`;
   currentX = x;
 }
-
 
 function endSwipe(event) {
   if (!isSwiping) return;
 
+  // már nem swipeol hisz vége van tehát már nem igaz
   isSwiping = false;
   document.removeEventListener("mousemove", swipe);
   document.removeEventListener("touchmove", swipe);
   document.removeEventListener("mouseup", endSwipe);
   document.removeEventListener("touchend", endSwipe);
 
-  const threshold = 50; // Adjust as needed
+  //ennyi pixel után már swipenak lehet számitani
+  const threshold = 50;
 
-  if (Math.abs(image1Translation) > threshold) {
-    console.log("Swiped");
+  //swipe-e
+  if (Math.abs(imageTranslation) > threshold) {
+    console.log(imageTranslation);
+    if (imageTranslation > 50) {
+      console.log("jobb swipe");
+    } else {
+      console.log("bal swipe");
+    }
+    // már swipe van tehát kell a kövi kép
     currentIndex = (currentIndex + 1) % images.length;
+    loadImages(currentIndex);
   }
 
-  // Load the new images
-  loadImages(currentIndex);
-
-  // Reset the translation of both images
-  image1Translation = 0;
-  image2Translation = 0;
-  image1.style.transform = `translateX(${image1Translation}px)`;
-  image2.style.transform = `translateX(${image2Translation}px)`;
+  // berakja középre
+  imageTranslation = 0;
+  image.style.transform = `translateX(${imageTranslation}px)`;
 }
