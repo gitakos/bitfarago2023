@@ -1,22 +1,22 @@
-import data from './data.json' assert { type: 'json' };
+import data from "./data.json" assert { type: "json" };
 console.log(data);
 // console.log(document.body.getElementsByTagName("main"));
-let kep = document.getElementById("kep");
-kep.src = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.896-CTRPJUm-rJl8u5dv0gAAAA%26pid%3DApi&f=1&ipt=f735445e08ed8b01b93fa2cdaa1274a8516b06ac646593bd5c3e151f647ad9ab&ipo=images"
-kep.addEventListener("mousedown",mozg);
-function mozg(){
-    let szam = kep.style.left.slice(kep.style.left.length-1,2);
-    console.log(szam);
-    kep.style.left = kep.style.left.slice(kep.style.left.length-1,2)-0+1+"px";
-}
+
 
 const imageContainer = document.getElementById("image-container");
 const images = Array.from(imageContainer.querySelectorAll("img"));
+images.forEach((img, index) => {
+  if (index !== 0) {
+    img.style.opacity = 0;
+  }
+});
 
 let currentIndex = 0;
 let isSwiping = false;
 let startX = 0;
 let currentX = 0;
+let image1Translation = 0;
+let image2Translation = 0;
 
 const image1 = images[0];
 const image2 = images[1];
@@ -27,11 +27,29 @@ imageContainer.addEventListener("mousedown", startSwipe);
 imageContainer.addEventListener("touchstart", startSwipe);
 
 function loadImages(index) {
-  image1.src = images[index].src;
-  const nextIndex = (index + 1) % images.length;
-  image2.src = images[nextIndex].src;
+  // Fade out the current image
+  image1.style.opacity = 0;
 
-  console.log(image1,image2)
+  setTimeout(function () {
+    // Set the new image source
+    image1.src = images[index].src;
+
+    // Preload the next image
+    const nextIndex = (index + 1) % images.length;
+    const nextImage = new Image();
+    nextImage.src = images[nextIndex].src;
+
+    // Show the new image with a fade-in effect
+    setTimeout(function () {
+      image1.style.opacity = 1;
+    }, 100); // Adjust the delay as needed
+
+    // Reset the translation of both images after the transition
+    image1Translation = 0;
+    image2Translation = 0;
+    image1.style.transform = `translateX(${image1Translation}px)`;
+    image2.style.transform = `translateX(${image2Translation}px)`;
+  }, 600); // Adjust the duration of the transition
 }
 
 function startSwipe(event) {
@@ -52,11 +70,22 @@ function swipe(event) {
   const x = event.clientX || event.touches[0].clientX;
   const offsetX = x - currentX;
 
-  image1.style.transform = `translateX(${offsetX}px)`;
-  image2.style.transform = `translateX(${offsetX}px)`;
+  // Calculate the maximum allowed movement based on the current translation
+  const maxOffsetX = 75 - image1Translation; // Adjust as needed
+  const minOffsetX = -75 - image1Translation; // Adjust as needed
+
+  // Clamp the offsetX value within the limits
+  const clampedOffsetX = Math.min(Math.max(offsetX, minOffsetX), maxOffsetX);
+
+  image1Translation += clampedOffsetX;
+  image2Translation += clampedOffsetX;
+
+  image1.style.transform = `translateX(${image1Translation}px)`;
+  image2.style.transform = `translateX(${image2Translation}px)`;
 
   currentX = x;
 }
+
 
 function endSwipe(event) {
   if (!isSwiping) return;
@@ -67,14 +96,19 @@ function endSwipe(event) {
   document.removeEventListener("mouseup", endSwipe);
   document.removeEventListener("touchend", endSwipe);
 
-  const threshold = 100; // Adjust as needed
-  const offset = currentX - startX;
+  const threshold = 50; // Adjust as needed
 
-  if (Math.abs(offset) >= threshold) {
+  if (Math.abs(image1Translation) > threshold) {
+    console.log("Swiped");
     currentIndex = (currentIndex + 1) % images.length;
-    loadImages(currentIndex);
   }
 
-  image1.style.transform = "translateX(0)";
-  image2.style.transform = "translateX(0)";
+  // Load the new images
+  loadImages(currentIndex);
+
+  // Reset the translation of both images
+  image1Translation = 0;
+  image2Translation = 0;
+  image1.style.transform = `translateX(${image1Translation}px)`;
+  image2.style.transform = `translateX(${image2Translation}px)`;
 }
