@@ -1,0 +1,35 @@
+#profil_kep{
+    width: 150px;
+    height: 150px;
+    float: right;
+    margin-right: 1%;
+}
+h1{
+    margin-left: 1%;
+}
+h2{
+    margin-left: 1%;
+}
+#ember_gomb{
+    margin-left: 2%;
+}
+#szem{
+    margin-top: 0.5%;
+}
+#ad{
+    margin-top: 4%;
+}
+#ka{
+    margin-top: 4%;
+}
+#km{
+    margin-top: 4%;
+}
+.ora{
+    float: right;
+    font-size: large;
+    background-color: aqua;
+}
+#cim{
+    text-align: center;
+}
