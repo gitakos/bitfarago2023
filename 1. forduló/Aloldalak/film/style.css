@@ -1,0 +1,27 @@
+#kep{
+    position: absolute;
+    left: 0px;
+}
+
+
+#image-container {
+    position: relative;
+    overflow: hidden;
+    width: 300px; /* Adjust to your preferred image width */
+    height: 200px; /* Adjust to your preferred image height */
+  }
+  
+  img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease; /* Smooth transition effect */
+    display: none;
+  }
+  
+  #image1 {
+    display: block; /* Show the first image initially */
+  }
+
+
+
