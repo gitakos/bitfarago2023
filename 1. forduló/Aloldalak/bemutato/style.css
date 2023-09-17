@@ -10,9 +10,7 @@ h1{
 h2{
     margin-left: 1%;
 }
-#ember_gomb{
-    margin-left: 2%;
-}
+
 #szem{
     margin-top: 0.5%;
 }
@@ -32,4 +30,31 @@ h2{
 }
 #cim{
     text-align: center;
+}
+#button1{
+  margin-left: 1%;
+  font-size: large;
+}
+#button2{
+  margin-left: 1%;
+  font-size: large;
+}
+#button3{
+  margin-left: 1%;
+  font-size: large;
+}
+#button4{
+  margin-left: 1%;
+  font-size: large;
+}
+.full-text{
+  font-size: large;
+  margin-left: 1%;
+}
+#galeria{
+  margin-top: 5%;
+
+}
+#kepek{
+  margin-left: 1%;
 }
