@@ -1,5 +1,16 @@
 {
-    "id": 1,
-    "name": "John Doe",
-    "age": 12
+    "elemek":[
+        {
+            "kategorianev": "Horror",
+            "leiras": "Nagyon ijesztő"
+        },
+        {
+            "kategorianev": "Scifi",
+            "leiras": "Nem ijesztő"
+        },
+        {
+            "kategorianev": "Shrek",
+            "leiras": "Legijesztőbb"
+        }
+    ]
 }

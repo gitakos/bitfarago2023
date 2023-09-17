@@ -3,6 +3,7 @@ console.log(data);
 // console.log(document.body.getElementsByTagName("main"));
 
 const imageContainer = document.getElementById("image-container");
+imgKeszites(data);
 const images = Array.from(imageContainer.querySelectorAll("img"));
 images.forEach((img, index) => {
   if (index !== 0) {
@@ -99,4 +100,14 @@ function endSwipe(event) {
   // berakja középre
   imageTranslation = 0;
   image.style.transform = `translateX(${imageTranslation}px)`;
+}
+
+function imgKeszites(data){
+  data.elemek.forEach(element => {
+    let img = document.createElement("img");
+    img.src="kepek/"+element.kategorianev+".jpg";
+    img.setAttribute("draggable","false");
+    img.setAttribute("class","image");
+    imageContainer.appendChild(img);
+  });
 }
