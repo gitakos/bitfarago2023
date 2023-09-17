@@ -3,13 +3,12 @@ console.log(data);
 // console.log(document.body.getElementsByTagName("main"));
 
 const imageContainer = document.getElementById("image-container");
-imgKeszites(data);
-const images = Array.from(imageContainer.querySelectorAll("img"));
-images.forEach((img, index) => {
-  if (index !== 0) {
-    img.style.opacity = 0;
-  }
-});
+const leirasDiv = document.getElementById("leiras");
+const nevDiv = document.getElementById("nev");
+var images = [];
+var leirasok = [];
+var nevek = [];
+adatListarendezes(data);
 
 let currentIndex = 0;
 let isSwiping = false;
@@ -17,7 +16,18 @@ let startX = 0;
 let currentX = 0;
 let imageTranslation = 0;
 
-const image = images[0];
+const image = document.createElement("img");
+image.setAttribute("draggable","false");
+image.setAttribute("class","image");
+imageContainer.appendChild(image);
+const leiras = document.createElement("span");
+leiras.setAttribute("draggable","false");
+leiras.setAttribute("class","leiras");
+leirasDiv.appendChild(leiras);
+const nev = document.createElement("span");
+nev.setAttribute("draggable","false");
+nev.setAttribute("class","nev");
+nevDiv.appendChild(nev);
 
 // kell az alap kép
 loadImages(currentIndex);
@@ -29,10 +39,18 @@ imageContainer.addEventListener("touchstart", startSwipe);
 function loadImages(index) {
   // ami már ellet huzva tüntessük ell
   image.style.opacity = 0;
+  leiras.style.opacity = 0;
+  nev.style.opacity = 0;
 
   setTimeout(function () {
-    image.src = images[index].src; // kell az új kép src
+    image.src = images[index]; // kell az új kép src
     image.style.opacity = 1;
+
+    leiras.innerText = leirasok[index];
+    leiras.style.opacity = 1;
+
+    nev.innerText = nevek[index];
+    nev.style.opacity = 1;
   }, 600); // változás hossza 
 }
 
@@ -56,7 +74,7 @@ function startSwipe(event) {
 function swipe(event) {
   if (!isSwiping) return;
 
-  const x = event.clientX || event.touches[0].clientX; // hol az egér
+  const x = event.clientX; // hol az egér (event.touches[0].clientX; ez csak telefonnál számít)
   const offsetX = x - currentX; // most balra vagy jobbra megyünk
 
   // menyire mehet el a kép balra meg jobbra
@@ -102,12 +120,11 @@ function endSwipe(event) {
   image.style.transform = `translateX(${imageTranslation}px)`;
 }
 
-function imgKeszites(data){
+function adatListarendezes(data){
+
   data.elemek.forEach(element => {
-    let img = document.createElement("img");
-    img.src="kepek/"+element.kategorianev+".jpg";
-    img.setAttribute("draggable","false");
-    img.setAttribute("class","image");
-    imageContainer.appendChild(img);
+    images.push("kepek/"+element.kategorianev+".jpg");
+    leirasok.push(element.leiras);
+    nevek.push(element.kategorianev);
   });
 }
