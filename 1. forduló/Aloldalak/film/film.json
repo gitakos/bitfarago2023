@@ -1,0 +1,64 @@
+{
+    "filmek":[
+        {
+            "cim": "A keresztapa",
+            "ketegoriak": "Dráma Bűnügyi",
+            "pontok": 0
+        },
+        {
+            "cim": "Forest Gump",
+            "ketegoriak": "Dráma Romantikus",
+            "pontok": 0
+        },
+        {
+            "cim": "Vissza a jövőbe",
+            "ketegoriak": "Komédia Sci-fi",
+            "pontok": 0
+        },
+        {
+            "cim": "Top Gun: Maverick",
+            "ketegoriak": "Dráma Akció",
+            "pontok": 0
+        },
+        {
+            "cim": "Péntek 13",
+            "ketegoriak": "Horror",
+            "pontok": 0
+        },
+        {
+            "cim": "Titanic",
+            "ketegoriak": "Dráma Romantikus",
+            "pontok": 0
+        },
+        {
+            "cim": "Mátrix",
+            "ketegoriak": "Sci-fi Akció",
+            "pontok": 0
+        },
+        {
+            "cim": "Terminátor",
+            "ketegoriak": "Sci-fi Akció",
+            "pontok": 0
+        },
+        {
+            "cim": "A sötét lovag",
+            "ketegoriak": "Akció Bűnügyi",
+            "pontok": 0
+        },
+        {
+            "cim": "Az oroszlánkirály",
+            "ketegoriak": "Családi Dráma",
+            "pontok": 0
+        },
+        {
+            "cim": "Aladin",
+            "ketegoriak": "Családi Romantikus",
+            "pontok": 0
+        },
+        {
+            "cim": "Szörny Rt.",
+            "ketegoriak": "Családi Komédia",
+            "pontok": 0
+        }
+    ]
+}
