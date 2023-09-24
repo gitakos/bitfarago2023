@@ -2,9 +2,10 @@ import data from "./data.json" assert { type: "json" };
 console.log(data);
 // console.log(document.body.getElementsByTagName("main"));
 
-const imageContainer = document.getElementById("image-container");
-const leirasDiv = document.getElementById("leiras");
-const nevDiv = document.getElementById("nev");
+const main = document.body.getElementsByTagName("main")[0];
+var imageContainer;
+var leirasDiv;
+var nevDiv;
 var images = [];
 var leirasok = [];
 var nevek = [];
@@ -16,25 +17,9 @@ let startX = 0;
 let currentX = 0;
 let imageTranslation = 0;
 
-const image = document.createElement("img");
-image.setAttribute("draggable","false");
-image.setAttribute("class","image");
-imageContainer.appendChild(image);
-const leiras = document.createElement("span");
-leiras.setAttribute("draggable","false");
-leiras.setAttribute("class","leiras");
-leirasDiv.appendChild(leiras);
-const nev = document.createElement("span");
-nev.setAttribute("draggable","false");
-nev.setAttribute("class","nev");
-nevDiv.appendChild(nev);
-
-// kell az alap kép
-loadImages(currentIndex);
-
-// tudjuk hogy rálett e nyomva
-imageContainer.addEventListener("mousedown", startSwipe);
-imageContainer.addEventListener("touchstart", startSwipe);
+var image;
+var leiras;
+var nev;
 
 function loadImages(index) {
   // ami már ellet huzva tüntessük ell
@@ -128,3 +113,75 @@ function adatListarendezes(data){
     nevek.push(element.kategorianev);
   });
 }
+function ertekBetolt(){
+  imageContainer = document.createElement("div");
+  imageContainer.setAttribute("id","image-container");
+  main.appendChild(imageContainer);
+
+  let tartalom = document.createElement("div");
+  tartalom.setAttribute("id","tartalom");
+  main.appendChild(tartalom);
+
+  nevDiv = document.createElement("div");
+  nevDiv.setAttribute("id","nev");
+  tartalom.appendChild(nevDiv);
+
+  leirasDiv = document.createElement("div");
+  leirasDiv.setAttribute("id","leiras");
+  tartalom.appendChild(leirasDiv);
+
+  images = [];
+  leirasok = [];
+  nevek = [];
+  adatListarendezes(data);
+
+  currentIndex = 0;
+  isSwiping = false;
+  startX = 0;
+  currentX = 0;
+  imageTranslation = 0;
+}
+function elemBetolt(){
+  image = document.createElement("img");
+  image.setAttribute("draggable","false");
+  image.setAttribute("class","image");
+  imageContainer.appendChild(image);
+
+  leiras = document.createElement("span");
+  leiras.setAttribute("draggable","false");
+  leiras.setAttribute("class","leiras");
+  leirasDiv.appendChild(leiras);
+
+  nev = document.createElement("span");
+  nev.setAttribute("draggable","false");
+  nev.setAttribute("class","nev");
+  nevDiv.appendChild(nev);
+
+  loadImages(currentIndex);
+
+  // tudjuk hogy rálett e nyomva
+  imageContainer.addEventListener("mousedown", startSwipe);
+  imageContainer.addEventListener("touchstart", startSwipe);
+}
+function oldalBetolt(){
+  main.innerHTML = "";
+  ertekBetolt();
+  elemBetolt();
+}
+function kezdoKepernyoBetolt(){
+  let div = document.createElement("div");
+  div.setAttribute("class","belepes_div");
+  main.appendChild(div);
+  let gomb = document.createElement("button");
+  gomb.setAttribute("class","belepes_bt");
+  gomb.innerText = "Belépés";
+  gomb.onclick = function () {
+    oldalBetolt();
+  };
+  div.appendChild(gomb);
+  let belep_leir = document.createElement("span");
+  belep_leir.innerText="A Findr a legjobb filmkereső oldal egész Magyarországon, talán ön is megtalálhatja kedvenc kategóriái alapján kedvenc filmeit! Ne késlekedjen, lépjen be MOST! vagy családját nem fogja látni többé.";
+  belep_leir.setAttribute("class","belepes_leir");
+  div.append(belep_leir);
+}
+kezdoKepernyoBetolt();
