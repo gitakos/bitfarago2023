@@ -1,5 +1,9 @@
 import data from "./data.json" assert { type: "json" };
 console.log(data);
+
+import film from "./film.json" assert { type: "json" };
+console.log(film);
+
 // console.log(document.body.getElementsByTagName("main"));
 
 const main = document.body.getElementsByTagName("main")[0];
@@ -16,6 +20,8 @@ let isSwiping = false;
 let startX = 0;
 let currentX = 0;
 let imageTranslation = 0;
+let kerdes = document.getElementById("question");
+kerdes.style.display="none"
 
 var image;
 var leiras;
@@ -73,6 +79,16 @@ function swipe(event) {
   image.style.transform = `translateX(${imageTranslation}px)`;
   currentX = x;
 }
+function pontadas(szam){
+  for (let i = 0; i < film.filmek.length; i++) {
+    let kategoriak_temp = film.filmek[i].kategoriak.split(" ");
+    if(kategoriak_temp.includes(data.elemek[currentIndex].kategorianev))
+    {
+      film.filmek[i].pontok += szam;
+    }
+  }
+  console.log(film.filmek);
+}
 
 function endSwipe(event) {
   if (!isSwiping) return;
@@ -92,11 +108,18 @@ function endSwipe(event) {
     console.log(imageTranslation);
     if (imageTranslation > 50) {
       console.log("jobb swipe");
+      pontadas(1);
     } else {
       console.log("bal swipe");
+      pontadas(-1);
+      
     }
     // már swipe van tehát kell a kövi kép
-    currentIndex = (currentIndex + 1) % images.length;
+    currentIndex++;
+    if(currentIndex==images.length)
+    {
+      filmKimutato();
+    }
     loadImages(currentIndex);
   }
 
@@ -108,7 +131,7 @@ function endSwipe(event) {
 function adatListarendezes(data){
 
   data.elemek.forEach(element => {
-    images.push("kepek/"+element.kategorianev+".jpg");
+    images.push("kepek/"+element.kategorianev+".png");
     leirasok.push(element.leiras);
     nevek.push(element.kategorianev);
   });
@@ -166,6 +189,8 @@ function elemBetolt(){
 function oldalBetolt(){
   main.innerHTML = "";
   ertekBetolt();
+  console.log(kerdes);
+  kerdes.style.display= "block"
   elemBetolt();
 }
 function kezdoKepernyoBetolt(){
@@ -183,5 +208,53 @@ function kezdoKepernyoBetolt(){
   belep_leir.innerText="A Findr a legjobb filmkereső oldal egész Magyarországon, talán ön is megtalálhatja kedvenc kategóriái alapján kedvenc filmeit! Ne késlekedjen, lépjen be MOST! vagy családját nem fogja látni többé.";
   belep_leir.setAttribute("class","belepes_leir");
   div.append(belep_leir);
+}
+function filmValaszt(div,rossz_div){
+  for(let i = 0; i<film.filmek.length;i++)
+  {
+    let img = document.createElement("img");
+    img.setAttribute("class","film_kep");
+    img.src = "kepek/"+film.filmek[i].cim+".png";
+    if(film.filmek[i].pontok > 0)
+    {
+      if(div.innerHTML=="Nem kedvelsz semmilyen filmet 🤓")
+      {
+        div.innerHTML = "";
+      }
+      div.appendChild(img);
+    }
+    else if(film.filmek[i].pontok < 0)
+    {
+      if(rossz_div.innerHTML=="Nem utálsz semmilyen filmet 🤓")
+      {
+        rossz_div.innerHTML = "";
+      }
+      rossz_div.appendChild(img);
+    }
+  }
+}
+function filmKimutato(){
+  kerdes.style.display="none"
+  main.innerHTML = "";
+  let div = document.createElement("div");
+  div.setAttribute("class","film");
+  let rossz_div = document.createElement("div");
+  rossz_div.setAttribute("class","film");
+  let rossz_div_cim = document.createElement("h1");
+  rossz_div_cim.setAttribute("class","cim");
+  let div_cim = document.createElement("h1");
+  div_cim.setAttribute("class","cim");
+
+  div_cim.innerText="A filmek amiket kedvelsz:";
+  rossz_div_cim.innerText="A filmek amiket nem kedvelsz:";
+  div.innerHTML="Nem kedvelsz semmilyen filmet 🤓";
+  rossz_div.innerHTML="Nem utálsz semmilyen filmet 🤓";
+
+  main.appendChild(div_cim);
+  main.appendChild(div);
+  main.appendChild(rossz_div_cim);
+  main.appendChild(rossz_div);
+
+  filmValaszt(div,rossz_div);
 }
 kezdoKepernyoBetolt();

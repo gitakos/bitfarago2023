@@ -32,12 +32,12 @@ h1{
   background-color: rgba(253, 253, 253, 0.24);
   border-left: 1px solid black;
   border-right: 1px solid black;
-  width: fit-content;
+  width: 40%;
   margin: auto;
   padding: 20px;
 }
 #tartalom>div{
-  width: 600px;
+  width: fit-content;
   margin: auto;
   margin-top: 10px;
 }
@@ -78,5 +78,40 @@ h1{
 }
 header{
   border-bottom: 2px solid black;
-    background-color: rgba(253, 253, 253, 0.24);
+  background-color: rgba(253, 253, 253, 0.24);
+}
+.film{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap ;
+  font-size: larger;
+  font-weight: bold;
+  width: fit-content;
+  margin: auto;
+}
+.film_kep{
+  position: relative;
+  width: 400px;
+  height: 500px;
+  margin-top: 15px;
+}
+.cim{
+  background-color: rgba(253, 253, 253, 0.24);
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  width: fit-content;
+  padding: 10px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+.kerdes{
+  position: absolute;
+  height: 45px;
+  width: 44.69px;
+  right: 0;
+  bottom: 0;
+  transition: display 0.4s ease;
 }
