@@ -63,7 +63,7 @@ function toggleFullText(tldrId, fullTextId, buttonId) {
           fullText.style.opacity = "1";
           fullText.style.height = fullText.scrollHeight + "px";
         }, 0);
-      }, 500);
+      }, 0);
     }
   }
 
