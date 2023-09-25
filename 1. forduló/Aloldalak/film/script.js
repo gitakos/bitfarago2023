@@ -1,8 +1,123 @@
-import data from "./data.json" assert { type: "json" };
-console.log(data);
 
-import film from "./film.json" assert { type: "json" };
-console.log(film);
+
+var data=
+[
+  {
+    "kategorianev": "Horror",
+    "leiras": "Ahol az elcseszett döntéseid és a legrosszabb pillanataid válnak életveszélyessé, és a sikítások a legjobb zene."
+},
+{
+    "kategorianev": "Sci-fi",
+    "leiras": "Ahol a technológia megold minden problémát, kivéve az emberi hülyeséget."
+},
+{
+    "kategorianev": "Akció",
+    "leiras": "Amikor a gravitáció csak egy vágyálom, és a robbanások a dialógusokat váltják fel."
+},
+{
+    "kategorianev": "Családi",
+    "leiras": "Amikor az összes konfliktust egyetlen ölelés oldja meg, és mindenki boldogan él, miután megosztották a meleg szívű tanulságokat."
+},
+{
+    "kategorianev": "Romantikus",
+    "leiras": "Az igaz szerelem mindig akkor talál rád, amikor éppen nem készültél rá, és a legtöbb problémát egy jóbeszédű legyintéssel lehet megoldani."
+},
+{
+    "kategorianev": "Komédia",
+    "leiras": "Ahol a nevetés a legjobb gyógyszer, és a poénok gyorsabbak, mint egy rossz nap."
+},
+{
+    "kategorianev": "Bűnügyi",
+    "leiras": "Amikor a tettes mindig egy lépéssel előtted jár, de a szuperintelligens nyomozók mindig megoldják az ügyet a legváratlanabb pillanatban."
+},
+{
+    "kategorianev": "Dráma",
+    "leiras": "Amikor az érzelmek a plafonon vannak, és a legtöbb problémát egy jóbeszédű jelenet megoldja, amit az emberek egész évben próbálnak elkerülni."
+}
+]
+
+
+var film =
+[
+  {
+      "cim": "A keresztapa",
+      "kategoriak": "Dráma Bűnügyi",
+      "pontok": 0,
+      "megjelenes" : 1972
+  },
+  {
+      "cim": "Forest Gump",
+      "kategoriak": "Dráma Romantikus",
+      "pontok": 0,
+      "megjelenes" :1994
+  },
+  {
+      "cim": "Vissza a jövőbe",
+      "kategoriak": "Komédia Sci-fi",
+      "pontok": 0,
+      "megjelenes" :1985
+  },
+  {
+      "cim": "Top Gun Maverick",
+      "kategoriak": "Dráma Akció",
+      "pontok": 0,
+      "megjelenes" : 2022
+  },
+  {
+      "cim": "Péntek 13",
+      "kategoriak": "Horror",
+      "pontok": 0,
+      "megjelenes" : 1980
+  },
+  {
+      "cim": "Titanic",
+      "kategoriak": "Dráma Romantikus",
+      "pontok": 0,
+      "megjelenes" :1997
+  },
+  {
+      "cim": "Mátrix",
+      "kategoriak": "Sci-fi Akció",
+      "pontok": 0,
+      "megjelenes" : 1999
+  },
+  {
+      "cim": "Terminátor",
+      "kategoriak": "Sci-fi Akció",
+      "pontok": 0,
+      "megjelenes" :1984
+  },
+  {
+      "cim": "A sötét lovag",
+      "kategoriak": "Akció Bűnügyi",
+      "pontok": 0,
+      "megjelenes" : 2009
+  },
+  {
+      "cim": "Az oroszlánkirály",
+      "kategoriak": "Családi Dráma",
+      "pontok": 0,
+      "megjelenes" :1994
+  },
+  {
+      "cim": "Aladin",
+      "kategoriak": "Családi Romantikus",
+      "pontok": 0,
+      "megjelenes" :2019
+  },
+  {
+      "cim": "Szörny Rt",
+      "kategoriak": "Családi Komédia",
+      "pontok": 0,
+      "megjelenes" : 2001
+  },
+  {
+      "cim": "Gyerekjáték",
+      "kategoriak": "Horror",
+      "pontok": 0,
+      "megjelenes" : 1988
+  }
+]
 
 // console.log(document.body.getElementsByTagName("main"));
 
@@ -80,14 +195,13 @@ function swipe(event) {
   currentX = x;
 }
 function pontadas(szam){
-  for (let i = 0; i < film.filmek.length; i++) {
-    let kategoriak_temp = film.filmek[i].kategoriak.split(" ");
-    if(kategoriak_temp.includes(data.elemek[currentIndex].kategorianev))
+  for (let i = 0; i < film.length; i++) {
+    let kategoriak_temp = film[i].kategoriak.split(" ");
+    if(kategoriak_temp.includes(data[currentIndex].kategorianev))
     {
-      film.filmek[i].pontok += szam;
+      film[i].pontok += szam;
     }
   }
-  console.log(film.filmek);
 }
 
 function endSwipe(event) {
@@ -130,11 +244,13 @@ function endSwipe(event) {
 
 function adatListarendezes(data){
 
-  data.elemek.forEach(element => {
-    images.push("kepek/"+element.kategorianev+".png");
-    leirasok.push(element.leiras);
-    nevek.push(element.kategorianev);
-  });
+  console.log(data);
+
+  for (let i = 0; i < data.length; i++) {
+    images.push("kepek/"+data[i].kategorianev+".png");
+    leirasok.push(data[i].leiras);
+    nevek.push(data[i].kategorianev);
+  }
 }
 function ertekBetolt(){
   imageContainer = document.createElement("div");
@@ -210,12 +326,12 @@ function kezdoKepernyoBetolt(){
   div.append(belep_leir);
 }
 function filmValaszt(div,rossz_div){
-  for(let i = 0; i<film.filmek.length;i++)
+  for(let i = 0; i<film.length;i++)
   {
     let img = document.createElement("img");
     img.setAttribute("class","film_kep");
-    img.src = "kepek/"+film.filmek[i].cim+".png";
-    if(film.filmek[i].pontok > 0)
+    img.src = "kepek/"+film[i].cim+".png";
+    if(film[i].pontok > 0)
     {
       if(div.innerHTML=="Nem kedvelsz semmilyen filmet 🤓")
       {
@@ -223,7 +339,7 @@ function filmValaszt(div,rossz_div){
       }
       div.appendChild(img);
     }
-    else if(film.filmek[i].pontok < 0)
+    else if(film[i].pontok < 0)
     {
       if(rossz_div.innerHTML=="Nem utálsz semmilyen filmet 🤓")
       {
