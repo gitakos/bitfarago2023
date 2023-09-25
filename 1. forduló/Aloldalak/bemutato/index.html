@@ -8,31 +8,43 @@
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
     <title>Teszt oldal 1</title>
+    <style>
+      @font-face {
+          font-family: 'digital_by_marci'; /* Give your font a name */
+          src: url("digi.ttf") format('truetype'); /* Specify the font file path and format */
+          /* Add more font properties here if needed, such as font-weight and font-style */
+      }
+  </style>
 </head>
 <body>
     <h1 id="cim">Az Erre_iszunk csapat</h1>
-    <div class="ora">
-        <div id="datum"></div>
-        <div id="ido"></div>
-    </div>
-    <div id="csapat">
-        <p id="szem">
-            <h1>Szabó Emánuel</h1>
-            <img src="cuki_agocs.jpg" alt="cuki agocs pic" title="cuki agócs pic" id="profil_kep">
-            <h2>Felkészítő tanár</h2>
 
-        </p>
-        <button id="button1" class="tldrbutton"  onclick="toggleFullText('tldr1', 'fullText1','button1')">Mutass többet</button>
-                        <hr>
-                        <div>
-                            <span id="tldr1" class="tldr" style="display: block;"></span>
-                            <span id="fullText1" class="full-text" style="display: none;">Szabó Emánuel őstörténet</span>
-                        </div>
-    
+        <div id="kocsma">
+            <div id="kocsmaros">
+              <div class="ora">
+                <div id="datum"></div>
+                <div id="ido"></div>
+            </div>
+                <img src="csapos_eman.png" alt="cuki agocs pic" title="cuki agócs pic" class="profil_kep" id="csapos_eman">
+        </div>
+        <div id="eman_leiras">
+          <h1 id="eman">Szabo Emanuel</h1>
+          <h2 id="eman2">Felkeszito tanar</h2>
+          <button id="button1" class="tldrbutton" onclick="toggleFullText('tldr1', 'fullText1','button1')">Mutass tobbet</button>
+          <hr>
+          <div>
+              <span id="tldr1" class="tldr" style="display: block;"></span>
+              <span id="fullText1" class="full-text" style="display: none;">Szabó Emánuel őstörténet</span>
+          </div>
+        </div>
+      </div>
+
+
         <!-- --------------------------------------------------------------------------------- -->
+        <div id="vendegek">
         <p id="ad">
             <h1>Agócs Dániel</h1>
-            <img src="cuki_agocs.jpg" alt="cuki agocs pic" title="cuki agócs pic" id="profil_kep">
+            <img src="cuki_agocs.jpg" alt="cuki agocs pic" title="cuki agócs pic" class="profil_kep">
             <h2>Mesterséges intelligencia abuser</h2>
             <p id="ad_szoveg"></p>
 
@@ -46,7 +58,7 @@
         <!-- --------------------------------------------------------------------------------- -->
         <p id="ka">
             <h1>Kovács Ákos</h1>
-            <img src="cuki_agocs.jpg" alt="cuki agocs pic" title="cuki agócs pic" id="profil_kep">
+            <img src="cuki_agocs.jpg" alt="cuki agocs pic" title="cuki agócs pic" class="profil_kep">
             <h2>Roblox developer</h2>
             <p id="ka_szoveg"></p>
 
@@ -60,7 +72,7 @@
         <!-- --------------------------------------------------------------------------------- -->
         <p id="km">
             <h1>Krausz Márton</h1>
-            <img src="cuki_agocs.jpg" alt="cuki agocs pic" title="cuki agócs pic" id="profil_kep">
+            <img src="cuki_agocs.jpg" alt="cuki agocs pic" title="cuki agócs pic" class="profil_kep">
             <h2>A tökéletesség lexikoni példája</h2>
             <p id="km_szoveg"></p>
 
@@ -72,6 +84,7 @@
                             <span id="fullText4" class="full-text" style="display: none;">Krausz Márton :nerd:</span>
                         </div>
     </div>
+  </div>
     <div id="galeria">
         <h1 id="galeria_h1">Képek az iskoláról és a fejlesztésre használt eszközökről</h1>
 
@@ -113,6 +126,6 @@
               <span class="visually-hidden">Next</span>
             </button>
           </div>
-    </div>
+
 </body>
 </html>

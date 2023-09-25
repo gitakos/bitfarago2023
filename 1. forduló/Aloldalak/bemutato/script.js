@@ -14,9 +14,9 @@ function Ora() {
 }
 
 function DatumAtalakitoCsoda(nap,ev,honap,nap_datum){
-    var honapok = ["Január","Február","Március","Április","Május","Június","Július","Augusztus","Szeptember","Október","November","December"];
-    var napok = ["Hétfő","Kedd","Szerda","Csütörtök","Péntek","Szombat","Vasárnap"];
-    var margyar_datum = nap+", "+ev+". "+honapok[honap]+" "+nap_datum+".";
+    var honapok = ["Januar","Februar","Marcius","Aprilis","Majus","Junius","Julius","Augusztus","Szeptember","Oktober","November","December"];
+    var napok = ["Vasarnap","Hetfo","Kedd","Szerda","Csütörtök","Pentek","Szombat"];
+    var margyar_datum = napok[nap]+", "+ev+". "+honapok[honap]+" "+nap_datum+".";
     return margyar_datum;
 }
 
@@ -68,5 +68,17 @@ function toggleFullText(tldrId, fullTextId, buttonId) {
   }
 
 
+function szelesseg(){
+  var element1 = document.getElementById('csapos_eman');
+  var element2 = document.getElementById('eman_leiras');
+  var temp1 = element1.getBoundingClientRect();
+  var height1 = temp1.height;
+  var width1 = temp1.width+"px";
+  element2.style.width = width1;
+  // console.log(width1);
+  // console.log(height1);
+} 
+
+szelesseg();
 setInterval(Ora, 1000);
 Ora();
