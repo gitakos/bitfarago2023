@@ -39,8 +39,41 @@ body{
 .profil_kep{
     width: 150px;
     height: 150px;
-    float: right;
     margin-right: 1%;
+}
+
+#vendegek {
+  display: flex;
+  justify-content: space-between;
+}
+
+#ad,
+#ka,
+#km {
+  flex-basis: calc(33.33% - 20px); 
+  padding: 10px;
+  border: 5px solid #8B4513; 
+  border-radius: 10px;
+  box-sizing: border-box; 
+  color: white;
+  font-family: 'digital_by_marci'; 
+  font-size: 2em;
+  background-color: rgba(0, 0, 0, 0.5); 
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+h1,
+h2{
+  text-align: center;
+}
+#button2,
+#button3,
+#button4{
+  float: center;
 }
 
 
@@ -82,14 +115,14 @@ body{
   position: absolute;
   top: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Background color for the overlay */
-  color: #fff; /* Text color for the overlay */
-  padding: 10px; /* Adjust padding as needed */
+  background-color: rgba(0, 0, 0, 0.5); 
+  color: #fff; 
+  padding: 10px; 
   z-index: 1;
 }
 
 #eman_leiras{
-
+  margin-right: 11px;
   font-family: 'digital_by_marci'; 
   font-size: 2em;
   background-color: #ccc; 
@@ -98,11 +131,9 @@ body{
   border: 5px solid #8B4513; 
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-
-  background-color: rgba(0, 0, 0, 0.5); /* Background color for the overlay */
-  color: #fff; /* Text color for the overlay */
-  padding: 10px; /* Adjust padding as needed */
-
+  background-color: rgba(0, 0, 0, 0.5); 
+  color: #fff; 
+  padding: 10px; 
 }
 
 #datum, #ido {
@@ -163,7 +194,24 @@ body{
   margin-left: 1%;
 }
 #galeria{
-  margin-top: 5%;
+  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1%;
+  flex-basis: calc(33.33% - 20px); 
+  padding: 10px;
+  border: 5px solid #8B4513; 
+  border-radius: 10px;
+  box-sizing: border-box; 
+  color: white;
+  font-family: 'digital_by_marci'; 
+  font-size: 2em;
+  background-color: rgba(0, 0, 0, 0.5); 
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-left: 1%;
+  margin-right: 1%;
 
 }
 #kepek{
