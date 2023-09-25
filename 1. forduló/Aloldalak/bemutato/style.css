@@ -1,60 +1,58 @@
-#profil_kep{
-    width: 150px;
-    height: 150px;
-    float: right;
-    margin-right: 1%;
-}
-h1{
-    margin-left: 1%;
-}
-h2{
-    margin-left: 1%;
+@font-face {
+  font-family: 'Minecarft';
+  src: url('Minecraft.ttf') format('truetype');
 }
 
-#szem{
-    margin-top: 0.5%;
+.italok{
+  display: flex;
+  justify-content: space-evenly;
+  background-image: url("dark_cbbl.png");
+  background-size: 110px;
 }
-#ad{
-    margin-top: 4%;
+.pultosok{
+  padding-top: 50px;
+  display: flex;
+  justify-content: space-evenly;
+  background-image: url("dark_cbbl.png");
+  background-size: 110px;
 }
-#ka{
-    margin-top: 4%;
+.vasarlok{
+  display: flex;
+  justify-content: space-evenly;
+  background-image: url("planks.png");
 }
-#km{
-    margin-top: 4%;
+.vasarlok>img{
+  height: 25%;
+  width: 15%;
+  box-shadow: 2px 2px 10px black;
 }
-.ora{
-    float: right;
-    font-size: large;
-    background-color: aqua;
+.pultteto{
+  height: 40px;
+  background-image: url("slabstone.png");
+  background-size: 110px;
 }
-#cim{
-    text-align: center;
+.csapat_tabla{
+  background-image: url("dark_cbbl.png");
+  background-size: 110px;
 }
-#button1{
-  margin-left: 1%;
-  font-size: large;
+.nametag{
+  position: absolute;
+  color: white;
+  font-family: 'Minecraft';
 }
-#button2{
-  margin-left: 1%;
-  font-size: large;
-}
-#button3{
-  margin-left: 1%;
-  font-size: large;
-}
-#button4{
-  margin-left: 1%;
-  font-size: large;
-}
-.full-text{
-  font-size: large;
-  margin-left: 1%;
-}
-#galeria{
-  margin-top: 5%;
 
+.portre{
+  height: 20%;
+  width: 10%;
+  box-shadow: 2px 2px 10px black;
 }
-#kepek{
-  margin-left: 1%;
+.ital{
+  box-shadow: 2px 2px 10px black;
+}
+body{
+  background-color: black;
+}
+.polc{
+  height: 40px;
+  background-image: url("planks.png");
 }

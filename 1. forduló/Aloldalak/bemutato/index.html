@@ -10,109 +10,28 @@
     <title>Teszt oldal 1</title>
 </head>
 <body>
-    <h1 id="cim">Az Erre_iszunk csapat</h1>
-    <div class="ora">
-        <div id="datum"></div>
-        <div id="ido"></div>
+    <div class="csapat_tabla">
+      <span class="csapat_tabla_cim">Erre_iszunk</span>
     </div>
-    <div id="csapat">
-        <p id="szem">
-            <h1>Szabó Emánuel</h1>
-            <img src="cuki_agocs.jpg" alt="cuki agocs pic" title="cuki agócs pic" id="profil_kep">
-            <h2>Felkészítő tanár</h2>
-
-        </p>
-        <button id="button1" class="tldrbutton"  onclick="toggleFullText('tldr1', 'fullText1','button1')">Mutass többet</button>
-                        <hr>
-                        <div>
-                            <span id="tldr1" class="tldr" style="display: block;"></span>
-                            <span id="fullText1" class="full-text" style="display: none;">Szabó Emánuel őstörténet</span>
-                        </div>
-    
-        <!-- --------------------------------------------------------------------------------- -->
-        <p id="ad">
-            <h1>Agócs Dániel</h1>
-            <img src="cuki_agocs.jpg" alt="cuki agocs pic" title="cuki agócs pic" id="profil_kep">
-            <h2>Mesterséges intelligencia abuser</h2>
-            <p id="ad_szoveg"></p>
-
-        </p>
-        <button id="button2" class="tldrbutton"  onclick="toggleFullText('tldr2', 'fullText2','button2')">Mutass többet</button>
-                        <hr>
-                        <div>
-                            <span id="tldr2" class="tldr" style="display: block;"></span>
-                            <span id="fullText2" class="full-text" style="display: none;">Agócs Dániel bemutatja: Élet egy Boeing 747 orrával</span>
-                        </div>
-        <!-- --------------------------------------------------------------------------------- -->
-        <p id="ka">
-            <h1>Kovács Ákos</h1>
-            <img src="cuki_agocs.jpg" alt="cuki agocs pic" title="cuki agócs pic" id="profil_kep">
-            <h2>Roblox developer</h2>
-            <p id="ka_szoveg"></p>
-
-        </p>
-        <button id="button3" class="tldrbutton"  onclick="toggleFullText('tldr3', 'fullText3','button3')">Mutass többet</button>
-                        <hr>
-                        <div>
-                            <span id="tldr3" class="tldr" style="display: block;"></span>
-                            <span id="fullText3" class="full-text" style="display: none;">Kovács Ákos és a Steam tetkó</span>
-                        </div>
-        <!-- --------------------------------------------------------------------------------- -->
-        <p id="km">
-            <h1>Krausz Márton</h1>
-            <img src="cuki_agocs.jpg" alt="cuki agocs pic" title="cuki agócs pic" id="profil_kep">
-            <h2>A tökéletesség lexikoni példája</h2>
-            <p id="km_szoveg"></p>
-
-        </p>
-        <button id="button4" class="tldrbutton"  onclick="toggleFullText('tldr4', 'fullText4','button4')">Mutass többet</button>
-                        <hr>
-                        <div>
-                            <span id="tldr4" class="tldr" style="display: block;"></span>
-                            <span id="fullText4" class="full-text" style="display: none;">Krausz Márton :nerd:</span>
-                        </div>
+    <div class="italok">
+      <img class="ital" id="akos_it" src="akos_poti.jpg">
+      <img class="ital" id="dani_it" src="dani_poti.jpg">
+      <img class="ital" id="marci_it" src="marci_poti.jpg">
+      <img class="ital" id="lev_it" src="levi_poti.jpg">
     </div>
-    <div id="galeria">
-        <h1 id="galeria_h1">Képek az iskoláról és a fejlesztésre használt eszközökről</h1>
-
-        <div id="kepek" class="carousel slide w-25">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#kepek" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#kepek" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#kepek" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="cuki_agocs.jpg" class="d-block w-100" alt="..." width="300px" height="200px">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Cuki agocs numero uno</h5>
-                  <p>Some representative placeholder content for the first slide.</p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="cuki_agocs.jpg" class="d-block w-100" alt="..." width="300px" height="200px">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Second slide label</h5>
-                  <p>Some representative placeholder content for the second slide.</p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="cuki_agocs.jpg" class="d-block w-100" alt="..." width="300px" height="200px">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Third slide label</h5>
-                  <p>Some representative placeholder content for the third slide.</p>
-                </div>
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#kepek" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#kepek" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
+    <div class="polc"></div>
+    <div class="pultosok">
+      <img class="portre"id="akos" src="akos.jpg">
+      <span class="nametag">Ákos</span>
+      <img class="portre"id="dani" src="dani.jpg">
+      <span class="nametag">Dani</span>
+      <img class="portre"id="marci" src="marci.jpg">
+      <span class="nametag">Marci</span>
+    </div>
+    <div class="pultteto"></div>
+    <div class="vasarlok">
+      <img class="portre" id="szdani" src="cuki_agocs.jpg">
+      <img class="portre" id="szem" src="cuki_agocs.jpg">
     </div>
 </body>
 </html>
