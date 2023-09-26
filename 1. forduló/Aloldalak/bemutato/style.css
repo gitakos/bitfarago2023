@@ -2,6 +2,7 @@
 body{
   background-image: url(wallpaper.jpg);
   background-repeat: repeat;
+  font-family:'Times New Roman', Times, serif; 
 }
 
 #kocsmaros {
@@ -55,7 +56,6 @@ body{
   border-radius: 10px;
   box-sizing: border-box; 
   color: white;
-  font-family: 'digital_by_marci'; 
   font-size: 2em;
   background-color: rgba(0, 0, 0, 0.5); 
   flex-direction: column;
@@ -71,7 +71,6 @@ body{
   border-radius: 10px;
   box-sizing: border-box; 
   color: white;
-  font-family: 'digital_by_marci'; 
   font-size: 2em;
   background-color: rgba(0, 0, 0, 0.5); 
   flex-direction: column;
@@ -123,7 +122,7 @@ h2{
   margin-right: 1%;
   margin-left: 1%;
   display: inline-block;
-  font-family: 'digital_by_marci'; 
+  font-family: 'digital_by_marci' !important; 
   font-size: 2em;
   background-color: #ccc; 
   color: #000; 
@@ -143,7 +142,6 @@ h2{
 
 #eman_leiras{
   margin-right: 11px;
-  font-family: 'digital_by_marci'; 
   font-size: 2em;
   background-color: #ccc; 
   color: #000; 
@@ -224,7 +222,7 @@ h2{
   border-radius: 10px;
   box-sizing: border-box; 
   color: white;
-  font-family: 'digital_by_marci'; 
+  font-family:'Times New Roman', Times, serif; 
   font-size: 2em;
   background-color: rgba(0, 0, 0, 0.5); 
   flex-direction: column;
