@@ -55,7 +55,6 @@ body{
   border-radius: 10px;
   box-sizing: border-box; 
   color: white;
-  font-family: 'digital_by_marci'; 
   font-size: 2em;
   background-color: rgba(0, 0, 0, 0.5); 
   flex-direction: column;
@@ -71,7 +70,6 @@ body{
   border-radius: 10px;
   box-sizing: border-box; 
   color: white;
-  font-family: 'digital_by_marci'; 
   font-size: 2em;
   background-color: rgba(0, 0, 0, 0.5); 
   flex-direction: column;
@@ -143,7 +141,6 @@ h2{
 
 #eman_leiras{
   margin-right: 11px;
-  font-family: 'digital_by_marci'; 
   font-size: 2em;
   background-color: #ccc; 
   color: #000; 
@@ -175,8 +172,6 @@ h2{
 
 
 #cim{
-
-  font-family: 'digital_by_marci'; 
   font-size: 2em;
   background-color: #ccc; 
   color: #000; 
@@ -224,7 +219,6 @@ h2{
   border-radius: 10px;
   box-sizing: border-box; 
   color: white;
-  font-family: 'digital_by_marci'; 
   font-size: 2em;
   background-color: rgba(0, 0, 0, 0.5); 
   flex-direction: column;
