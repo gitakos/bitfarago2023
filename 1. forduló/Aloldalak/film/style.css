@@ -86,14 +86,40 @@ header{
   flex-wrap: wrap ;
   font-size: larger;
   font-weight: bold;
-  width: fit-content;
+  /*width: fit-content;*/
   margin: auto;
 }
 .film_kep{
   position: relative;
   width: 400px;
-  height: 500px;
-  margin-top: 15px;
+  height: 600px;
+  margin-top: 30px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+.film_cimek{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap ;
+  font-size: larger;
+  font-weight: bold;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  position: absolute;
+  /*width: fit-content;*/
+  transform: translateY(-30px);
+}
+.film_cim{
+  width: 400px;
+  height: 600px;
+  margin-top: 30px;
+  border-radius: 5px;
+  z-index: 2;
+  position: relative;
+  color: white;
+  text-align: center;
 }
 .cim{
   background-color: rgba(253, 253, 253, 0.24);

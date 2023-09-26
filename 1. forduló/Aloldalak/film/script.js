@@ -325,9 +325,12 @@ function kezdoKepernyoBetolt(){
   belep_leir.setAttribute("class","belepes_leir");
   div.append(belep_leir);
 }
-function filmValaszt(div,rossz_div){
+function filmValaszt(div,rossz_div,div_film_cim,rossz_div_film_cim){
   for(let i = 0; i<film.length;i++)
   {
+    let cim = document.createElement("span");
+    cim.setAttribute("class","film_cim");
+    cim.innerText=film[i].cim+" ("+film[i].megjelenes+")";
     let img = document.createElement("img");
     img.setAttribute("class","film_kep");
     img.src = "kepek/"+film[i].cim+".png";
@@ -338,6 +341,7 @@ function filmValaszt(div,rossz_div){
         div.innerHTML = "";
       }
       div.appendChild(img);
+      div_film_cim.appendChild(cim);
     }
     else if(film[i].pontok < 0)
     {
@@ -346,6 +350,7 @@ function filmValaszt(div,rossz_div){
         rossz_div.innerHTML = "";
       }
       rossz_div.appendChild(img);
+      rossz_div_film_cim.appendChild(cim);
     }
   }
 }
@@ -354,6 +359,10 @@ function filmKimutato(){
   main.innerHTML = "";
   let div = document.createElement("div");
   div.setAttribute("class","film");
+  let div_film_cimek = document.createElement("div");
+  div_film_cimek.setAttribute("class","film_cimek");
+  let rossz_div_film_cimek = document.createElement("div");
+  rossz_div_film_cimek.setAttribute("class","film_cimek");
   let rossz_div = document.createElement("div");
   rossz_div.setAttribute("class","film");
   let rossz_div_cim = document.createElement("h1");
@@ -367,10 +376,12 @@ function filmKimutato(){
   rossz_div.innerHTML="Nem utálsz semmilyen filmet 🤓";
 
   main.appendChild(div_cim);
+  main.appendChild(div_film_cimek);
   main.appendChild(div);
   main.appendChild(rossz_div_cim);
+  main.appendChild(rossz_div_film_cimek);
   main.appendChild(rossz_div);
 
-  filmValaszt(div,rossz_div);
+  filmValaszt(div,rossz_div,div_film_cimek,rossz_div_film_cimek);
 }
 kezdoKepernyoBetolt();
