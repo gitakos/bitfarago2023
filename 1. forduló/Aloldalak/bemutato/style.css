@@ -1,3 +1,7 @@
+@font-face {
+  font-family: 'digital_by_marci'; 
+  src: url("digi.ttf") format('truetype'); 
+}
 
 body{
   background-image: url(wallpaper.jpg);
@@ -141,7 +145,6 @@ h2{
 }
 
 #eman_leiras{
-  margin-right: 11px;
   font-size: 2em;
   background-color: #ccc; 
   color: #000; 
@@ -173,8 +176,6 @@ h2{
 
 
 #cim{
-
-  font-family: 'digital_by_marci'; 
   font-size: 2em;
   background-color: #ccc; 
   color: #000; 
@@ -186,9 +187,8 @@ h2{
   margin-right: 1%;
 
   margin-left: 1%;
-  background-color: rgba(0, 0, 0, 0.5); /* Background color for the overlay */
-  color: #fff; /* Text color for the overlay */
-
+  background-color: rgba(0, 0, 0, 0.5); 
+  color: #fff; 
 
 }
 #button1{

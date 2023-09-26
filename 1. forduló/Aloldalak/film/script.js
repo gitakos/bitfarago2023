@@ -1,5 +1,3 @@
-
-
 var data=
 [
   {
@@ -119,8 +117,6 @@ var film =
   }
 ]
 
-// console.log(document.body.getElementsByTagName("main"));
-
 const main = document.body.getElementsByTagName("main")[0];
 var imageContainer;
 var leirasDiv;
@@ -128,6 +124,7 @@ var nevDiv;
 var images = [];
 var leirasok = [];
 var nevek = [];
+var szunet = false;
 adatListarendezes(data);
 
 let currentIndex = 0;
@@ -157,10 +154,15 @@ function loadImages(index) {
 
     nev.innerText = nevek[index];
     nev.style.opacity = 1;
+    szunet = false;
   }, 600); // változás hossza 
+
 }
 
 function startSwipe(event) {
+  if (szunet) {
+    return;
+  }
   isSwiping = true;
 
   //kezdeti egér pozi
@@ -219,12 +221,10 @@ function endSwipe(event) {
 
   //swipe-e
   if (Math.abs(imageTranslation) > threshold) {
-    console.log(imageTranslation);
+    szunet = true;
     if (imageTranslation > 50) {
-      console.log("jobb swipe");
       pontadas(1);
     } else {
-      console.log("bal swipe");
       pontadas(-1);
       
     }
@@ -235,6 +235,7 @@ function endSwipe(event) {
       filmKimutato();
     }
     loadImages(currentIndex);
+
   }
 
   // berakja középre
@@ -243,8 +244,6 @@ function endSwipe(event) {
 }
 
 function adatListarendezes(data){
-
-  console.log(data);
 
   for (let i = 0; i < data.length; i++) {
     images.push("kepek/"+data[i].kategorianev+".png");
@@ -305,7 +304,6 @@ function elemBetolt(){
 function oldalBetolt(){
   main.innerHTML = "";
   ertekBetolt();
-  console.log(kerdes);
   kerdes.style.display= "block"
   elemBetolt();
 }

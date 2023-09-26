@@ -75,8 +75,6 @@ function szelesseg(){
   var height1 = temp1.height;
   var width1 = temp1.width+"px";
   element2.style.width = width1;
-  // console.log(width1);
-  // console.log(height1);
 } 
 
 szelesseg();
