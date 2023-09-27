@@ -233,6 +233,7 @@ function endSwipe(event) {
     if(currentIndex==images.length)
     {
       filmKimutato();
+      return;
     }
     loadImages(currentIndex);
 
