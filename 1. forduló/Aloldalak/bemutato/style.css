@@ -71,6 +71,9 @@ body{
   height: 350px;
   width: max-content;
 }
+#fekete{
+  color: #000;
+}
 
 #ad,
 #ka,
@@ -87,6 +90,7 @@ body{
   text-align: center;
   margin-left: 1%;
   margin-right: 1%;
+  height: auto;
 }
 #iskola{
   margin-top: 1%;
