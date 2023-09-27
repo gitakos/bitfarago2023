@@ -127,6 +127,12 @@ var nevek = [];
 var szunet = false;
 adatListarendezes(data);
 
+var ujratoltgomb = document.createElement("button");
+ujratoltgomb.setAttribute("class","ujra_gomb");
+ujratoltgomb.innerText = "Újratöltés";
+ujratoltgomb.setAttribute("onclick","location.reload()")
+document.body.getElementsByTagName("footer")[0].appendChild(ujratoltgomb);
+
 let currentIndex = 0;
 let isSwiping = false;
 let startX = 0;
@@ -309,6 +315,7 @@ function oldalBetolt(){
   elemBetolt();
 }
 function kezdoKepernyoBetolt(){
+  main.innerHTML= "";
   let div = document.createElement("div");
   div.setAttribute("class","belepes_div");
   main.appendChild(div);
@@ -320,7 +327,7 @@ function kezdoKepernyoBetolt(){
   };
   div.appendChild(gomb);
   let belep_leir = document.createElement("span");
-  belep_leir.innerText="A Findr a legjobb filmkereső oldal egész Magyarországon, talán ön is megtalálhatja kedvenc kategóriái alapján kedvenc filmeit! Ne késlekedjen, lépjen be MOST! vagy családját nem fogja látni többé.";
+  belep_leir.innerText="A Findr a legjobb filmkereső oldal egész Magyarországon, talán ön is megtalálhatja kedvenc kategóriái alapján kedvenc filmeit! Ne késlekedjen, lépjen be MOST!";
   belep_leir.setAttribute("class","belepes_leir");
   div.append(belep_leir);
 }
@@ -329,7 +336,7 @@ function filmValaszt(div,rossz_div,div_film_cim,rossz_div_film_cim){
   {
     let cim = document.createElement("span");
     cim.setAttribute("class","film_cim");
-    cim.innerText=film[i].cim+" ("+film[i].megjelenes+")";
+    cim.innerText=film[i].cim+" ("+film[i].megjelenes+") Kategória: "+film[i].kategoriak;
     let img = document.createElement("img");
     img.setAttribute("class","film_kep");
     img.src = "kepek/"+film[i].cim+".png";
