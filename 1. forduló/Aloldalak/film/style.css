@@ -140,6 +140,7 @@ header{
   right: 0;
   bottom: 0;
   transition: display 0.4s ease;
+  margin:5px;
 }
 .vissza_gomb{
   position: fixed;
