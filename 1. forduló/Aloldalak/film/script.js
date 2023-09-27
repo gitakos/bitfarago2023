@@ -238,7 +238,7 @@ function endSwipe(event) {
     currentIndex++;
     if(currentIndex==images.length)
     {
-      filmKimutato();
+      mutatoGombGen();
       return;
     }
     loadImages(currentIndex);
@@ -248,6 +248,19 @@ function endSwipe(event) {
   // berakja középre
   imageTranslation = 0;
   image.style.transform = `translateX(${imageTranslation}px)`;
+}
+function mutatoGombGen(){
+  main.innerHTML= "";
+  let div = document.createElement("div");
+  div.setAttribute("class","belepes_div");
+  main.appendChild(div);
+  let gomb = document.createElement("button");
+  gomb.setAttribute("class","mutato_bt");
+  gomb.innerText = "Mutassa a filmeket!";
+  gomb.onclick = function () {
+    filmKimutato();
+  };
+  div.appendChild(gomb);
 }
 
 function adatListarendezes(data){
@@ -327,7 +340,7 @@ function kezdoKepernyoBetolt(){
   };
   div.appendChild(gomb);
   let belep_leir = document.createElement("span");
-  belep_leir.innerText="A Findr a legjobb filmkereső oldal egész Magyarországon, talán ön is megtalálhatja kedvenc kategóriái alapján kedvenc filmeit! Ne késlekedjen, lépjen be MOST!";
+  belep_leir.innerText="A Findr a legjobb filmkereső oldal egész Magyarországon, talán ön is megtalálhatja kedvenc kategóriái alapján kedvenc filmeit! A film kategóriák balra és jobbra húzásával eldöntheti melyikeket kedveli/nem kedveli. Ne késlekedjen, lépjen be MOST!";
   belep_leir.setAttribute("class","belepes_leir");
   div.append(belep_leir);
 }
