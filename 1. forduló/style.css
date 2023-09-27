@@ -1,6 +1,7 @@
 .kepdiv{
   display: flex;
   justify-content: space-evenly;
+  height: auto;
 }
 .cimdiv{
   display: flex;
@@ -33,4 +34,10 @@ img {
   width: 100%;
   border: 2px solid white;
   box-shadow: black 10px 10px 4px;
+}
+
+#kep,
+#kep1{
+  height: 700px;
+  width: fit-content;
 }
