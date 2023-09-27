@@ -1,118 +1,242 @@
 <!DOCTYPE html>
 <html lang="hu">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>   
-    <link rel="icon" type="image/x-icon" href="favi.png">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="icon" type="image/x-icon" href="favi.png" />
+    <link rel="stylesheet" href="style.css" />
     <script defer src="script.js"></script>
     <title>Csapat bemutató</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1 id="cim">Az Erre_iszunk csapat</h1>
-
-        <div id="kocsma">
-            <div id="kocsmaros">
-              <div class="ora">
-                <div id="datum"></div>
-                <div id="ido"></div>
-            </div>
-                <img src="szem_kocsma.png" alt="Szabó Emánuel" title="Szabó Emánuel" class="profil_kep" id="csapos_eman">
+    <div id="kocsma">
+      <div id="kocsmaros">
+        <div class="ora">
+          <div id="datum"></div>
+          <div id="ido"></div>
         </div>
-        <div id="eman_leiras">
-          <h1 id="eman">Szabo Emánuel</h1>
-          <h2 id="eman2">Felkészitő tanár</h2>
-          <button id="button1" class="tldrbutton" onclick="toggleFullText('tldr1', 'fullText1','button1')">Mutass tobbet</button>
-          <hr>
-          <div>
-              <span id="tldr1" class="tldr" style="display: block;"></span>
-              <span id="fullText1" class="full-text" style="display: none;">Legjobb webprog tanár, aki még egy kakaó csiga miatt is traumatizálja *egyes* tanulóit, idézete:"Ne hibáztasd a szamarat hogy nem ló -Darren Shan"</span>
-          </div>
+        <img
+          src="szem_kocsma.png"
+          alt="Szabó Emánuel"
+          title="Szabó Emánuel"
+          class="profil_kep"
+          id="csapos_eman"
+        />
+      </div>
+      <div id="eman_leiras">
+        <h1 id="eman">Szabo Emánuel</h1>
+        <h2 id="eman2">Felkészitő tanár</h2>
+        <button
+          id="button1"
+          class="tldrbutton"
+          onclick="toggleFullText('tldr1', 'fullText1','button1')"
+        >
+          Mutass tobbet
+        </button>
+        <div>
+          <span id="tldr1" class="tldr" style="display: block"></span>
+          <span id="fullText1" class="full-text" style="display: none"
+            >Legjobb webprog tanár, aki még egy kakaó csiga miatt is
+            traumatizálja *egyes* tanulóit, idézete:"Ne hibáztasd a szamarat
+            hogy nem ló -Darren Shan"
+          </span>
         </div>
       </div>
+    </div>
 
+    <!-- --------------------------------------------------------------------------------- -->
+    <div id="vendegek">
+      <div id="ad">
+        <img
+          src="ad.png"
+          alt="Agócs Dániel"
+          title="Agócs Dániel"
+          class="profil_kep"
+        />
+        <h1>Agócs Dániel</h1>
+        <h2>Mesterséges intelligencia abuser</h2>
+        <p id="ad_szoveg"></p>
 
-        <!-- --------------------------------------------------------------------------------- -->
-        <div id="vendegek">
-        <div id="ad">
-          <img src="ad.png" alt="Agócs Dániel" title="Agócs Dániel" class="profil_kep">
-          <h1>Agócs Dániel</h1>
-            <h2>Mesterséges intelligencia abuser</h2>
-            <p id="ad_szoveg"></p>
-                            <span id="fullText2" class="full-text">Szia, én vagyok, a 17 éves programozó zseni, aki a kocsmában kizárólag almát kortyolgat. Az éjszakát kóddal és almalével töltöm, és hidd el, mindkettőnél erősebb a hatásuk! 🍏💻 *chat-GPT generated message*</span>
+        <button
+          id="button2"
+          class="tldrbutton"
+          onclick="toggleFullText('tldr2', 'fullText2','button2')"
+        >
+          Mutass többet
+        </button>
+        <div>
+          <span id="tldr2" class="tldr" style="display: block"></span>
+          <span id="fullText2" class="full-text" style="display: none"
+            >Szia, én vagyok, a 17 éves programozó zseni, aki a kocsmában
+            kizárólag almát kortyolgat. Az éjszakát kóddal és almalével töltöm,
+            és hidd el, mindkettőnél erősebb a hatásuk! 🍏💻 *chat-GPT generated
+            message*</span
+          >
         </div>
-        <!-- --------------------------------------------------------------------------------- -->
-        <div id="ka">
-          <img src="cuki_akos.png" alt="Kovács Ákos" title="Kovács Ákos" class="profil_kep">
-          <h1>Kovács Ákos</h1>
-            <h2>Volt-Jelen Roblox Developer</h2>
-            <p id="ka_szoveg"></p>
-                            <span id="fullText3" class="full-text">17 éves, gerje közelében lakik, gtfo-val játszál, nem kérdés, amúgy meg túl sok szabad idővel rendelkező mezei kenyérpiritó programozó</span>
-         </div>               
-        <!-- --------------------------------------------------------------------------------- -->
-        <div id="km">
-          <img src="km.png" alt="Krausz Márton" title="Krausz Márton" class="profil_kep">
-          <h1>Krausz Márton</h1>
-              <h2>Elit fejlesztési lelki erő biztosító</h2>
-              <p id="km_szoveg"></p>
-                              <span id="fullText4" class="full-text">Egy 17 éves szoftver fejlesztés és tesztelés szakra járó ifjú padavan, kinek két mestere van: Szabó Emánuel & Szabó Dániel</span>
+      </div>
+      <!-- --------------------------------------------------------------------------------- -->
+      <div id="ka">
+        <img
+          src="cuki_akos.png"
+          alt="Kovács Ákos"
+          title="Kovács Ákos"
+          class="profil_kep"
+        />
+        <h1>Kovacs Akos</h1>
+        <h2>Volt-Jelen Roblox Developer</h2>
+        <p id="ka_szoveg"></p>
+
+        <button
+          id="button3"
+          class="tldrbutton"
+          onclick="toggleFullText('tldr3', 'fullText3','button3')"
+        >
+          Mutass többet
+        </button>
+        <div>
+          <span id="tldr3" class="tldr" style="display: block"></span>
+          <span id="fullText3" class="full-text" style="display: none"
+            >17 éves, gerje közelében lakik, gtfo-val játszál, nem kérdés, amúgy
+            meg túl sok szabad idővel rendelkező mezei kenyérpiritó
+            programozó</span
+          >
         </div>
-        
+      </div>
+      <!-- --------------------------------------------------------------------------------- -->
+      <div id="km">
+        <img
+          src="km.png"
+          alt="Krausz Márton"
+          title="Krausz Márton"
+          class="profil_kep"
+        />
+        <h1>Krausz Márton</h1>
+        <h2>Elit fejlesztesi lelki ero biztosito</h2>
+        <p id="km_szoveg"></p>
+
+        <button
+          id="button4"
+          class="tldrbutton"
+          onclick="toggleFullText('tldr4', 'fullText4','button4')"
+        >
+          Mutass többet
+        </button>
+        <div>
+          <span id="tldr4" class="tldr" style="display: block"></span>
+          <span id="fullText4" class="full-text" style="display: none"
+            >Egy 17 éves szoftver fejlesztés és tesztelés szakra járó ifjú
+            padavan, kinek két mestere van: Szabó Emánuel & Szabó Dániel</span
+          >
+        </div>
+      </div>
     </div>
     <div id="iskola">
-      <img src="ckik.jpg" alt="CKIK" title="CKIK" id="iskola_kep">
+      <img src="ckik.jpg" alt="CKIK" title="CKIK" id="iskola_kep" />
       <h1>CKIK</h1>
-          <h2>Ceglédi SZC Közgazdasági es Informatikai Technikum</h2>
-          <p id="iskola_szoveg"></p>
-
-      
-    
+      <h2>Ceglédi SZC Közgazdasági es Informatikai Technikum</h2>
+      <p id="iskola_szoveg"></p>
     </div>
-  </div>
     <div id="galeria">
-        <h1 id="galeria_h1">Galeria</h1>
+      <h1 id="galeria_h1">Galeria</h1>
 
-        <div id="kepek" class="carousel slide">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#kepek" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#kepek" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#kepek" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <div id="kepek" class="carousel slide">
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#kepek"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#kepek"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#kepek"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="ckik.jpg"
+              class="d-block w-100"
+              alt="..."
+              width="800px"
+              height="400px"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Az iskolánk</h5>
+              <p></p>
             </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="ckik.jpg" class="d-block w-100" alt="..." width="800px" height="400px">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Az iskolánk</h5>
-                  <p></p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="m_setup.jpg" class="d-block w-100" alt="..." width="800px" height="400px">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Egy fejlesztő állomás</h5>
-                  <p></p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="infoora.jpg" class="d-block w-100" alt="..." width="800px" height="400px">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Egy átlagos info óra a CKIK-ben</h5>
-                  <p></p>
-                </div>
-              </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="m_setup.jpg"
+              class="d-block w-100"
+              alt="..."
+              width="800px"
+              height="400px"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Egy fejlesztő állomás</h5>
+              <p></p>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#kepek" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#kepek" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="infoora.jpg"
+              class="d-block w-100"
+              alt="..."
+              width="800px"
+              height="400px"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Egy átlagos info óra a CKIK-ben</h5>
+              <p></p>
+            </div>
           </div>
         </div>
-        <button class="vissza_gomb" onclick="location.href='../../index.html'">Vissza az előző oldalra</button>
-</body>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#kepek"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#kepek"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    <button class="vissza_gomb" onclick="location.href='../../index.html'">
+      Vissza az előző oldalra
+    </button>
+  </body>
 </html>
