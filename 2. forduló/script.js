@@ -61,8 +61,17 @@ function tablaGen() {
     var mezo = 0;
     for (var i = 0; i < 12; i++) {
         var sor = document.createElement("tr");
+        tablaHatterTar.push(new Array());
         for (var j = 0; j < 8; j++) {
-            tablaHatterTar.push(0);
+            if(i!=0&&i!=1&&i!=tablaHatterTar.length-1&&i!=tablaHatterTar.length-2)
+            {
+                tablaHatterTar[i].push( {
+                    babunev: "",
+                    pont: 0,
+                    "lepett-e": false,
+                    szin: null
+                },);
+            }
             var cella = document.createElement("td");
             cella.id = mezo;
             cella.textContent = mezo;
@@ -75,27 +84,30 @@ function tablaGen() {
 }
 function babuGen() {
     for (let index = 0; index < babuTemplate.length; index++) {
-        tablaHatterTar[index] = babuTemplate[index];
+        let cucc = Object.assign({}, data.find(x=>x.babunev==babuTemplate[index]));
+        cucc.szin = "fekete";
+        tablaHatterTar[Math.floor(index/8)].push(cucc);
     }
-    console.log(babuTemplate);
-    for (
-        let index = tablaHatterTar.length - 1;
-        index > tablaHatterTar.length - babuTemplate.length - 1;
-        index--
-    ) {
-        console.log(index);
-        tablaHatterTar[index] =
-            babuTemplate[
-                index - (tablaHatterTar.length - babuTemplate.length + index)
-            ];
+    babuTemplate.reverse();
+    console.log(tablaHatterTar);
+    for (let index = 96-babuTemplate.length; index < 96; index++) { 
+        let cucc = Object.assign({}, data.find(x=>x.babunev==babuTemplate[index-(96-babuTemplate.length)]));
+        cucc.szin = "feher";
+        console.log(Math.floor(index/8));
+        tablaHatterTar[Math.floor(index/8)].push(cucc);
     }
+    console.log(tablaHatterTar);
 }
 function kimutat() {
     var tabla = document.getElementById("tablaTartalom");
     var cellak = tabla.getElementsByTagName("td");
     for (var i = 0; i < cellak.length; i++) {
-        cellak[i].textContent = tablaHatterTar[i];
+        
     }
+}
+
+function mozgas(){
+
 }
 tablaGen();
 babuGen();
