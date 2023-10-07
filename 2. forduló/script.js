@@ -117,6 +117,7 @@ function kimutat() {
             const cella = sor.cells[j]
             cella.innerHTML = "";
             cella.dataset.lepheto = false;
+            cella.className= "";
         }
     }
 
@@ -163,7 +164,6 @@ function kimutatLehetsegesLepesek(lehetsegesLepesek){
 
 function paraszt_mozog(td,babu){
     var lehetsegesLepesek = new Array();
-    kimutat();
     if(babu.szin=="fekete")
     {
         if(babu.lepette==false)
@@ -261,13 +261,197 @@ function paraszt_mozog(td,babu){
         kimutatLehetsegesLepesek(lehetsegesLepesek);
     }
 }
+function bastya_mozog(td,babu){
+    var lehetsegesLepesek = new Array();
+    // jobbra
+    for (let i = Number(td.dataset.oszlop)+1; i < 8; i++) {
+        if (tablaHatterTar[td.dataset.sor][i].babunev ==  "") {
+            lehetsegesLepesek.push([td.dataset.sor,i])
+        }
+        else{
+            if((tablaHatterTar[td.dataset.sor][i].szin=="feher" && babu.szin=="fekete") ||(tablaHatterTar[td.dataset.sor][i].szin=="fekete" && babu.szin=="feher") )
+            {
+                lehetsegesLepesek.push([td.dataset.sor,i]);
+            }
+            break;
+        }
+    }
+    //balra
+    for (let i = Number(td.dataset.oszlop)-1; i >-1; i--) {
+        if (tablaHatterTar[td.dataset.sor][i].babunev ==  "") {
+            lehetsegesLepesek.push([td.dataset.sor,i])
+        }
+        else{
+            if((tablaHatterTar[td.dataset.sor][i].szin=="feher" && babu.szin=="fekete") ||(tablaHatterTar[td.dataset.sor][i].szin=="fekete" && babu.szin=="feher") )
+            {
+                lehetsegesLepesek.push([td.dataset.sor,i]);
+            }
+            break;
+        }
+    }
+    //fel
+    for (let i = Number(td.dataset.sor)-1; i >-1; i--) {
+        if (tablaHatterTar[i][td.dataset.oszlop].babunev ==  "") {
+            lehetsegesLepesek.push([i,td.dataset.oszlop])
+        }
+        else{
+            if((tablaHatterTar[i][td.dataset.oszlop].szin=="feher" && babu.szin=="fekete") ||(tablaHatterTar[i][td.dataset.oszlop].szin=="fekete" && babu.szin=="feher") )
+            {
+                lehetsegesLepesek.push([i,td.dataset.oszlop]);
+            }
+            break;
+        }
+    }
+    //le
+    for (let i = Number(td.dataset.sor)+1; i <12; i++) {
+        if (tablaHatterTar[i][td.dataset.oszlop].babunev ==  "") {
+            lehetsegesLepesek.push([i,td.dataset.oszlop])
+        }
+        else{
+            if((tablaHatterTar[i][td.dataset.oszlop].szin=="feher" && babu.szin=="fekete") ||(tablaHatterTar[i][td.dataset.oszlop].szin=="fekete" && babu.szin=="feher") )
+            {
+                lehetsegesLepesek.push([i,td.dataset.oszlop]);
+            }
+            break;
+        }
+    }
+    kimutatLehetsegesLepesek(lehetsegesLepesek);
+}
+function lo_mozog(td,babu){
+    var lehetsegesLepesek = new Array();
+    let mezok = [[Number(td.dataset.sor)+2,Number(td.dataset.oszlop)+1],
+    [Number(td.dataset.sor)+1,Number(td.dataset.oszlop)+2],
+    [td.dataset.sor-2,td.dataset.oszlop-1],
+    [td.dataset.sor-1,td.dataset.oszlop-2],
+    [Number(td.dataset.sor)+2,td.dataset.oszlop-1],
+    [Number(td.dataset.sor)+1,td.dataset.oszlop-2],
+    [td.dataset.sor-2,Number(td.dataset.oszlop)+1],
+    [td.dataset.sor-1,Number(td.dataset.oszlop)+2]];
+
+    for (let i = 0; i < mezok.length; i++) {
+        if (lephetEOda(mezok[i][0],mezok[i][1])) {
+            if(!(tablaHatterTar[mezok[i][0]][mezok[i][1]].szin=="feher" && babu.szin=="feher") &&!(tablaHatterTar[mezok[i][0]][mezok[i][1]].szin=="fekete" && babu.szin=="fekete") )
+            {
+                lehetsegesLepesek.push([mezok[i][0],mezok[i][1]]);
+            }
+        }
+    }
+    console.log(lehetsegesLepesek);
+    kimutatLehetsegesLepesek(lehetsegesLepesek);
+}
+
+
+function kiraly_mozog(td,babu){
+    let lehetsegesLepesek = new Array();
+
+    for (let i = -1; i <= 1 ; i++) {
+        for (let j = -1; j <= 1; j++) {
+            if (lephetEOda(Number(td.dataset.sor)+i,Number(td.dataset.oszlop)+j)) {
+                if(!(tablaHatterTar[Number(td.dataset.sor)+i][Number(td.dataset.oszlop)+j].szin=="feher" && babu.szin=="feher") &&!(tablaHatterTar[Number(td.dataset.sor)+i][Number(td.dataset.oszlop)+j].szin=="fekete" && babu.szin=="fekete") )
+                {
+                    lehetsegesLepesek.push([Number(td.dataset.sor)+i,Number(td.dataset.oszlop)+j]);
+                }
+            }
+        }
+    }
+    console.log(lehetsegesLepesek);
+    kimutatLehetsegesLepesek(lehetsegesLepesek);
+}
+function futo_mozog(td,babu){
+    var sor = Number(td.dataset.sor);
+    var oszlop = Number(td.dataset.oszlop);
+    var lehetsegesLepesek = new Array();
+
+    // le-jobbra
+    for (let i = 1; i <= 8; i++) {
+        if (!lephetEOda(sor+i,oszlop+i)) {
+            break;
+        }
+        if (tablaHatterTar[sor+i][oszlop+i].babunev ==  "") {
+            lehetsegesLepesek.push([sor+i,oszlop+i])
+        }
+        else{
+            if((tablaHatterTar[sor+i][oszlop+i].szin=="feher" && babu.szin=="fekete") ||(tablaHatterTar[sor+i][oszlop+i].szin=="fekete" && babu.szin=="feher") )
+            {
+                lehetsegesLepesek.push([sor+i,oszlop+i]);
+            }
+            break;
+        }
+    }
+    //balra-le
+    for (let i = 1; i <= 8; i++) {
+        if (!lephetEOda(sor+i,oszlop-i)) {
+            break;
+        }
+        if (tablaHatterTar[sor+i][oszlop-i].babunev ==  "") {
+            lehetsegesLepesek.push([sor+i,oszlop-i])
+        }
+        else{
+            if((tablaHatterTar[sor+i][oszlop-i].szin=="feher" && babu.szin=="fekete") ||(tablaHatterTar[sor+i][oszlop-i].szin=="fekete" && babu.szin=="feher") )
+            {
+                lehetsegesLepesek.push([sor+i,oszlop-i]);
+            }
+            break;
+        }
+    }
+    //bal-fel
+    for (let i = 1; i <= 8; i++) {
+        if (!lephetEOda(sor-i,oszlop-i)) {
+            break;
+        }
+        if (tablaHatterTar[sor-i][oszlop-i].babunev ==  "") {
+            lehetsegesLepesek.push([sor-i,oszlop-i])
+        }
+        else{
+            if((tablaHatterTar[sor-i][oszlop-i].szin=="feher" && babu.szin=="fekete") ||(tablaHatterTar[sor-i][oszlop-i].szin=="fekete" && babu.szin=="feher") )
+            {
+                lehetsegesLepesek.push([sor-i,oszlop-i]);
+            }
+            break;
+        }
+    }
+    //jobb fel
+    for (let i = 1; i <= 8; i++) {
+        if (!lephetEOda(sor-i,oszlop+i)) {
+            break;
+        }
+        if (tablaHatterTar[sor-i][oszlop+i].babunev ==  "") {
+            lehetsegesLepesek.push([sor-i,oszlop+i])
+        }
+        else{
+            if((tablaHatterTar[sor-i][oszlop+i].szin=="feher" && babu.szin=="fekete") ||(tablaHatterTar[sor-i][oszlop+i].szin=="fekete" && babu.szin=="feher") )
+            {
+                lehetsegesLepesek.push([sor-i,oszlop+i]);
+            }
+            break;
+        }
+    }
+    kimutatLehetsegesLepesek(lehetsegesLepesek);
+}
 
 function mozgaseldont(td,babu){
+    kimutat();
     if(babu.babunev=="paraszt")
     {
-        // console.log("teszt")
         paraszt_mozog(td,babu);
     }
+    else if(babu.babunev == "bastya"){
+        bastya_mozog(td,babu);
+    }
+    else if (babu.babunev == "lo"){
+        lo_mozog(td,babu);
+    }
+    else if (babu.babunev == "kiraly"){
+        kiraly_mozog(td,babu);
+    }
+    else if (babu.babunev == "futo"){
+        futo_mozog(td,babu)
+    }
+    else if (babu.babunev == "kiralyno"){
+        futo_mozog(td,babu)
+        bastya_mozog(td,babu);
+    }
+    
 }
 
 function katt(td){
