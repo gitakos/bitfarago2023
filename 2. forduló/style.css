@@ -34,3 +34,9 @@ tr:nth-child(even) td:nth-child(even) {
 #fo_alcim{
     text-align: center;
 }
+.feher{
+    color: blue !important;
+}
+.fekete{
+    color: red !important;
+}
