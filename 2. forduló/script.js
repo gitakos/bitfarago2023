@@ -63,18 +63,19 @@ function tablaGen() {
         var sor = document.createElement("tr");
         tablaHatterTar.push(new Array());
         for (var j = 0; j < 8; j++) {
-            if(i!=0&&i!=1&&i!=tablaHatterTar.length-1&&i!=tablaHatterTar.length-2)
-            {
-                tablaHatterTar[i].push( {
-                    babunev: "",
-                    pont: 0,
-                    "lepett-e": false,
-                    szin: null
-                },);
-            }
+            // tele pakolom mindegyik-et majd kesobb kiszedem
+            tablaHatterTar[i].push( {
+                babunev: "",
+                pont: 0,
+                "lepett-e": false,
+                szin: null
+            },);
+
             var cella = document.createElement("td");
             cella.id = mezo;
-            cella.textContent = mezo;
+            cella.dataset.sor = i;
+            cella.dataset.oszlop = j;
+            // cella.textContent = mezo;
             sor.appendChild(cella);
             mezo++;
         }
@@ -83,6 +84,10 @@ function tablaGen() {
     }
 }
 function babuGen() {
+    tablaHatterTar[0] = new Array();
+    tablaHatterTar[1] = new Array();
+    tablaHatterTar[10] = new Array();
+    tablaHatterTar[11] = new Array();
     for (let index = 0; index < babuTemplate.length; index++) {
         let cucc = Object.assign({}, data.find(x=>x.babunev==babuTemplate[index]));
         cucc.szin = "fekete";
@@ -99,10 +104,16 @@ function babuGen() {
     console.log(tablaHatterTar);
 }
 function kimutat() {
-    var tabla = document.getElementById("tablaTartalom");
-    var cellak = tabla.getElementsByTagName("td");
-    for (var i = 0; i < cellak.length; i++) {
-        
+    const tabla = document.getElementById("tablaTartalom");
+    for (var i = 0; i < tablaHatterTar.length; i++) {
+        const sor = tabla.rows[i]
+        for (let j = 0; j < tablaHatterTar[i].length; j++) {
+            const element = tablaHatterTar[i][j];
+            const cella = sor.cells[j]
+            if(element.babunev != ""){
+                cella.innerHTML = element.babunev;
+            }
+        }
     }
 }
 
