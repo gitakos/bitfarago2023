@@ -56,6 +56,9 @@ const babuTemplate = [
     "paraszt",
 ];
 var tablaHatterTar = [];
+var kor =0;
+
+
 function tablaGen() {
     var tabla = document.getElementById("tablaTartalom");
     var mezo = 0;
@@ -75,6 +78,7 @@ function tablaGen() {
             cella.id = mezo;
             cella.dataset.sor = i;
             cella.dataset.oszlop = j;
+            cella.setAttribute("onclick","katt(this)")
             // cella.textContent = mezo;
             sor.appendChild(cella);
             mezo++;
@@ -95,7 +99,7 @@ function babuGen() {
     }
     babuTemplate.reverse();
     console.log(tablaHatterTar);
-    for (let index = 96-babuTemplate.length; index < 96; index++) { 
+    for (let index = 96-babuTemplate.length; index < 96; index++) {
         let cucc = Object.assign({}, data.find(x=>x.babunev==babuTemplate[index-(96-babuTemplate.length)]));
         cucc.szin = "feher";
         console.log(Math.floor(index/8));
@@ -117,9 +121,20 @@ function kimutat() {
     }
 }
 
-function mozgas(){
-
+function katt(td){
+    if (tablaHatterTar[td.dataset.sor][td.dataset.oszlop].babunev != "") {
+        const babu = tablaHatterTar[td.dataset.sor][td.dataset.oszlop];
+        if (kor % 2 == 0 && babu.szin == "feher") {
+            console.log(tablaHatterTar[td.dataset.sor][td.dataset.oszlop].babunev);
+            // kor++;
+        }
+        else if(kor % 2 == 1 && babu.szin == "fekete"){
+            console.log(tablaHatterTar[td.dataset.sor][td.dataset.oszlop].babunev);
+            // kor++;
+        }
+    }
 }
+
 tablaGen();
 babuGen();
 kimutat();
