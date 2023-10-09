@@ -1,3 +1,9 @@
+body{
+    background-image: url(kepek/hatter.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 table {
     border-collapse: collapse;
     margin: 0 auto;
@@ -39,10 +45,23 @@ tr:nth-child(even) td:nth-child(even) {
     color: white;
 }
 
-#joker, #dupla{
+#joker, 
+#dupla{
+    background-color: rgba(0, 0, 0, 0.7); 
     padding: 10px;
-    border-radius: 10px;
-    background-color: gray;
+    border: 4px solid grey;
+    border-radius: 5px;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#joker:disabled,
+#dupla:disabled
+{
+    border: 4px dotted gray;
 }
 
 .lephet,
@@ -54,4 +73,61 @@ tr:nth-child(even) td:nth-child(even) {
 
 .babuKep {
     z-index: 1;
+}
+#gombok{
+    width: auto;
+    display: flex;
+    justify-content: center;
+}
+#pontszam{
+    position: absolute;
+    margin: auto;
+}
+
+#idozito
+{
+    margin-top: 2%;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 4px solid grey;
+    border-radius: 5px;
+    color: white;
+    width: fit-content;
+    padding: 10px;
+    margin: 10px;
+}
+#sth2,
+#stopper{
+    margin: auto;
+    width: fit-content;
+}
+
+#maxdiv{
+    position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: lightgray;
+      margin-top: 2%;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 4px solid grey;
+    border-radius: 5px;
+    color: white;
+    width: fit-content;
+    padding: 10px;
+    margin: 10px;
+}
+
+#fent{
+    display: flex;
+    justify-content: center;
+}
+#stat{
+    margin-top: 2%;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 4px solid grey;
+    border-radius: 5px;
+    color: white;
+    width: fit-content;
+    padding: 10px;
+    margin: 10px;
 }
