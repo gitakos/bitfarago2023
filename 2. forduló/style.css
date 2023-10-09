@@ -2,7 +2,7 @@ table {
     border-collapse: collapse;
     margin: 0 auto;
     margin-top: 10px;
-    margin-bottom: 100px;
+    /* margin-bottom: 100px; */
 }
 
 td {
@@ -11,35 +11,47 @@ td {
     border: 1px solid black;
     text-align: center;
     vertical-align: middle;
+    position: relative;
 }
 
 tr:nth-child(odd) td:nth-child(even),
 tr:nth-child(even) td:nth-child(odd) {
     background-color: black;
-    color: white;
+}
+
+tr:nth-child(odd):hover td:nth-child(even):hover,
+tr:nth-child(even):hover td:nth-child(odd):hover {
+    background-color: black;
+    box-shadow: inset 3px 3px 3px white,inset -3px -3px 3px white;
+}
+
+tr:nth-child(odd):hover td:nth-child(odd):hover,
+tr:nth-child(even):hover td:nth-child(even):hover {
+    background-color: white;
+    box-shadow: inset 3px 3px 3px black,inset -3px -3px 3px black ;
 }
 
 tr:nth-child(odd) td:nth-child(odd),
 tr:nth-child(even) td:nth-child(even) {
     background-color: white;
-    color: black;
 }
 #hehe{
     color: white;
 }
 
-#fo_cim,
-#fo_alcim{
-    text-align: center;
-}
-.feher{
-    color: blue !important;
-}
-.fekete{
-    color: red !important;
-}
-#joker{
+#joker, #dupla{
     padding: 10px;
     border-radius: 10px;
     background-color: gray;
+}
+
+.lephet,
+.babuKep {
+    height: 100%;
+    position: absolute;
+    transform: translate(-50%, -50%);  /* a kep legyen kozepre igazitva*/
+}
+
+.babuKep {
+    z-index: 1;
 }

@@ -131,13 +131,10 @@ function kimutat() {
             const element = tablaHatterTar[i][j];
             const cella = sor.cells[j]
             if(element.babunev != ""){
-                if (element.szin == "feher") {
-                    cella.className = "feher";
-                }
-                else{
-                    cella.className = "fekete";
-                }
-                cella.innerHTML = element.babunev;
+                let kep = document.createElement("img");
+                kep.src = "kepek/"+element.szin+"_"+element.babunev+"_sima.png"
+                kep.className = "babuKep";
+                cella.appendChild(kep)
             }
         }
     }
@@ -157,10 +154,15 @@ function lephetEOda(sor,oszlop){
 
 function kimutatLehetsegesLepesek(lehetsegesLepesek){
     const tabla = document.getElementById("tabla")
+    console.log(lehetsegesLepesek);
     for (let i = 0; i < lehetsegesLepesek.length; i++) {
+        console.log("teszt")
         const row = tabla.rows[lehetsegesLepesek[i][0]]
         const cella = row.cells[lehetsegesLepesek[i][1]]
-        cella.innerHTML = "lephetsz ide te szepseges"
+        let kep = document.createElement("img")
+        kep.src ="kepek/lephet.png"
+        kep.className="lephet"
+        cella.appendChild(kep);
         cella.dataset.lepheto = true;
     }
 }
@@ -169,96 +171,54 @@ function paraszt_mozog(td,babu){
     var lehetsegesLepesek = new Array();
     if(babu.szin=="fekete")
     {
-        if(babu.lepette==false)
-        {
-            for (let i = 1; i < 4; i++) {
-                if(lephetEOda(Number(td.dataset.sor)+i,Number(td.dataset.oszlop)))
+        for (let i = 1; i < 4; i++) {
+            if(lephetEOda(Number(td.dataset.sor)+i,Number(td.dataset.oszlop)))
+            {
+                if(tablaHatterTar[Number(td.dataset.sor)+i][Number(td.dataset.oszlop)].babunev=="")
                 {
-                    if(tablaHatterTar[Number(td.dataset.sor)+i][Number(td.dataset.oszlop)].babunev=="")
-                    {
-                        lehetsegesLepesek.push([Number(td.dataset.sor)+i,Number(td.dataset.oszlop)])
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    lehetsegesLepesek.push([Number(td.dataset.sor)+i,Number(td.dataset.oszlop)])
                 }
-            }
-            if (lephetEOda(Number(td.dataset.sor)+1,Number(td.dataset.oszlop)+1)) {
-                if (tablaHatterTar[Number(td.dataset.sor)+1][Number(td.dataset.oszlop)+1].szin == "feher") {
-                    lehetsegesLepesek.push([Number(td.dataset.sor)+1,Number(td.dataset.oszlop)+1]);
-                }
-            }
-            if (lephetEOda(Number(td.dataset.sor)+1,Number(td.dataset.oszlop)-1)) {
-                if (tablaHatterTar[Number(td.dataset.sor)+1][Number(td.dataset.oszlop)-1].szin == "feher") {
-                    lehetsegesLepesek.push([Number(td.dataset.sor)+1,Number(td.dataset.oszlop)-1]);
+                else
+                {
+                    break;
                 }
             }
         }
-        else
-        {
-            if (lephetEOda(Number(td.dataset.sor)+1,Number(td.dataset.oszlop))) {
-                if (tablaHatterTar[Number(td.dataset.sor)+1][Number(td.dataset.oszlop)].babunev == "") {
-                    lehetsegesLepesek.push([Number(td.dataset.sor)+1,Number(td.dataset.oszlop)]);
-                }
+        if (lephetEOda(Number(td.dataset.sor)+1,Number(td.dataset.oszlop)+1)) {
+            if (tablaHatterTar[Number(td.dataset.sor)+1][Number(td.dataset.oszlop)+1].szin == "feher") {
+                lehetsegesLepesek.push([Number(td.dataset.sor)+1,Number(td.dataset.oszlop)+1]);
             }
-            if (lephetEOda(Number(td.dataset.sor)+1,Number(td.dataset.oszlop)+1)) {
-                if (tablaHatterTar[Number(td.dataset.sor)+1][Number(td.dataset.oszlop)+1].szin == "feher") {
-                    lehetsegesLepesek.push([Number(td.dataset.sor)+1,Number(td.dataset.oszlop)+1]);
-                }
-            }
-            if (lephetEOda(Number(td.dataset.sor)+1,Number(td.dataset.oszlop)-1)) {
-                if (tablaHatterTar[Number(td.dataset.sor)+1][Number(td.dataset.oszlop)-1].szin == "feher") {
-                    lehetsegesLepesek.push([Number(td.dataset.sor)+1,Number(td.dataset.oszlop)-1]);
-                }
+        }
+        if (lephetEOda(Number(td.dataset.sor)+1,Number(td.dataset.oszlop)-1)) {
+            if (tablaHatterTar[Number(td.dataset.sor)+1][Number(td.dataset.oszlop)-1].szin == "feher") {
+                lehetsegesLepesek.push([Number(td.dataset.sor)+1,Number(td.dataset.oszlop)-1]);
             }
         }
         kimutatLehetsegesLepesek(lehetsegesLepesek);
     }
     else
     {
-        if(babu.lepette==false)
-        {
-            for (let i = 1; i < 4; i++) {
-                if(lephetEOda(Number(td.dataset.sor)-i,Number(td.dataset.oszlop)))
+        for (let i = 1; i < 4; i++) {
+            if(lephetEOda(Number(td.dataset.sor)-i,Number(td.dataset.oszlop)))
+            {
+                if(tablaHatterTar[Number(td.dataset.sor)-i][Number(td.dataset.oszlop)].babunev=="")
                 {
-                    if(tablaHatterTar[Number(td.dataset.sor)-i][Number(td.dataset.oszlop)].babunev=="")
-                    {
-                        lehetsegesLepesek.push([Number(td.dataset.sor)-i,Number(td.dataset.oszlop)])
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    lehetsegesLepesek.push([Number(td.dataset.sor)-i,Number(td.dataset.oszlop)])
                 }
-            }
-            if (lephetEOda(Number(td.dataset.sor)-1,Number(td.dataset.oszlop)+1)) {
-                if (tablaHatterTar[Number(td.dataset.sor)-1][Number(td.dataset.oszlop)+1].szin == "fekete") {
-                    lehetsegesLepesek.push([Number(td.dataset.sor)-1,Number(td.dataset.oszlop)+1]);
-                }
-            }
-            if (lephetEOda(Number(td.dataset.sor)-1,Number(td.dataset.oszlop)-1)) {
-                if (tablaHatterTar[Number(td.dataset.sor)-1][Number(td.dataset.oszlop)-1].szin == "fekete") {
-                    lehetsegesLepesek.push([Number(td.dataset.sor)-1,Number(td.dataset.oszlop)-1]);
+                else
+                {
+                    break;
                 }
             }
         }
-        else
-        {
-            if (lephetEOda(Number(td.dataset.sor)-1,Number(td.dataset.oszlop))) {
-                if (tablaHatterTar[Number(td.dataset.sor)-1][Number(td.dataset.oszlop)].babunev == "") {
-                    lehetsegesLepesek.push([Number(td.dataset.sor)-1,Number(td.dataset.oszlop)]);
-                }
+        if (lephetEOda(Number(td.dataset.sor)-1,Number(td.dataset.oszlop)+1)) {
+            if (tablaHatterTar[Number(td.dataset.sor)-1][Number(td.dataset.oszlop)+1].szin == "fekete") {
+                lehetsegesLepesek.push([Number(td.dataset.sor)-1,Number(td.dataset.oszlop)+1]);
             }
-            if (lephetEOda(Number(td.dataset.sor)-1,Number(td.dataset.oszlop)+1)) {
-                if (tablaHatterTar[Number(td.dataset.sor)-1][Number(td.dataset.oszlop)+1].szin == "fekete") {
-                    lehetsegesLepesek.push([Number(td.dataset.sor)-1,Number(td.dataset.oszlop)+1]);
-                }
-            }
-            if (lephetEOda(Number(td.dataset.sor)-1,Number(td.dataset.oszlop)-1)) {
-                if (tablaHatterTar[Number(td.dataset.sor)-1][Number(td.dataset.oszlop)-1].szin == "fekete") {
-                    lehetsegesLepesek.push([Number(td.dataset.sor)-1,Number(td.dataset.oszlop)-1]);
-                }
+        }
+        if (lephetEOda(Number(td.dataset.sor)-1,Number(td.dataset.oszlop)-1)) {
+            if (tablaHatterTar[Number(td.dataset.sor)-1][Number(td.dataset.oszlop)-1].szin == "fekete") {
+                lehetsegesLepesek.push([Number(td.dataset.sor)-1,Number(td.dataset.oszlop)-1]);
             }
         }
         kimutatLehetsegesLepesek(lehetsegesLepesek);
@@ -274,7 +234,7 @@ function bastya_mozog(td,babu){
         else{
             if((tablaHatterTar[td.dataset.sor][i].szin=="feher" && babu.szin=="fekete") ||(tablaHatterTar[td.dataset.sor][i].szin=="fekete" && babu.szin=="feher") )
             {
-                lehetsegesLepesek.push([td.dataset.sor,i]);
+                lehetsegesLepesek.push([Number(td.dataset.sor),i]);
             }
             break;
         }
@@ -287,7 +247,7 @@ function bastya_mozog(td,babu){
         else{
             if((tablaHatterTar[td.dataset.sor][i].szin=="feher" && babu.szin=="fekete") ||(tablaHatterTar[td.dataset.sor][i].szin=="fekete" && babu.szin=="feher") )
             {
-                lehetsegesLepesek.push([td.dataset.sor,i]);
+                lehetsegesLepesek.push([Number(td.dataset.sor),i]);
             }
             break;
         }
@@ -300,7 +260,7 @@ function bastya_mozog(td,babu){
         else{
             if((tablaHatterTar[i][td.dataset.oszlop].szin=="feher" && babu.szin=="fekete") ||(tablaHatterTar[i][td.dataset.oszlop].szin=="fekete" && babu.szin=="feher") )
             {
-                lehetsegesLepesek.push([i,td.dataset.oszlop]);
+                lehetsegesLepesek.push([i,Number(td.dataset.oszlop)]);
             }
             break;
         }
@@ -313,7 +273,7 @@ function bastya_mozog(td,babu){
         else{
             if((tablaHatterTar[i][td.dataset.oszlop].szin=="feher" && babu.szin=="fekete") ||(tablaHatterTar[i][td.dataset.oszlop].szin=="fekete" && babu.szin=="feher") )
             {
-                lehetsegesLepesek.push([i,td.dataset.oszlop]);
+                lehetsegesLepesek.push([i,Number(td.dataset.oszlop)]);
             }
             break;
         }
@@ -466,6 +426,13 @@ function kiraly_mozog(td,babu){
             break;
         }
     }
+
+    // sancolas jobb bastya feher
+    if (babu.lepette == true && tablaHatterTar[11][7].babunev == "bastya" && tablaHatterTar[11][7].szin == "feher" && tablaHatterTar[11][6].babunev == "" && tablaHatterTar[11][6].babunev == "") {
+        lehetsegesLepesek.push([11,7]);
+    }
+
+
     console.log(lehetsegesLepesek);
     kimutatLehetsegesLepesek(lehetsegesLepesek);
 }
@@ -570,7 +537,7 @@ function katt(td){
     console.log(td)
     if(td.dataset.lepheto=="true"){
         console.log("teszt")
-        tablaHatterTar[kivalasztott[0]][kivalasztott[1]].lepette= true;
+        tablaHatterTar[kivalasztott[0]][kivalasztott[1]].lepette = true;
         tablaHatterTar[td.dataset.sor][td.dataset.oszlop] = tablaHatterTar[kivalasztott[0]][kivalasztott[1]];
         tablaHatterTar[kivalasztott[0]][kivalasztott[1]] = {
             babunev: "",
@@ -661,8 +628,14 @@ function joker(){
     lo_mozog(cella,babu);
 }
 
-tablaGen();
-babuGen();
-kimutat();
-jokerGombGen();
-duplaGombGen();
+
+function main(){
+    tablaGen();
+    babuGen();
+    kimutat();
+    jokerGombGen();
+    duplaGombGen();
+}
+
+
+main();
