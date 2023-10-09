@@ -58,7 +58,10 @@ const babuTemplate = [
 var tablaHatterTar = [];
 var kor =0;
 var kivalasztott = null;
-
+var jatekosJoker = [false,false];
+var duplaKor = [false,false];
+var jokerNyomvae = false;
+var duplaNyomvae = false;
 
 function tablaGen() {
     var tabla = document.getElementById("tablaTartalom");
@@ -157,7 +160,7 @@ function kimutatLehetsegesLepesek(lehetsegesLepesek){
     for (let i = 0; i < lehetsegesLepesek.length; i++) {
         const row = tabla.rows[lehetsegesLepesek[i][0]]
         const cella = row.cells[lehetsegesLepesek[i][1]]
-        cella.innerHTML = "lephetsz ide te cigo"
+        cella.innerHTML = "lephetsz ide te szepseges"
         cella.dataset.lepheto = true;
     }
 }
@@ -342,16 +345,125 @@ function lo_mozog(td,babu){
 
 
 function kiraly_mozog(td,babu){
-    let lehetsegesLepesek = new Array();
-
-    for (let i = -1; i <= 1 ; i++) {
-        for (let j = -1; j <= 1; j++) {
-            if (lephetEOda(Number(td.dataset.sor)+i,Number(td.dataset.oszlop)+j)) {
-                if(!(tablaHatterTar[Number(td.dataset.sor)+i][Number(td.dataset.oszlop)+j].szin=="feher" && babu.szin=="feher") &&!(tablaHatterTar[Number(td.dataset.sor)+i][Number(td.dataset.oszlop)+j].szin=="fekete" && babu.szin=="fekete") )
-                {
-                    lehetsegesLepesek.push([Number(td.dataset.sor)+i,Number(td.dataset.oszlop)+j]);
-                }
+    var lehetsegesLepesek = new Array();
+    // jobbra
+    for (let i = Number(td.dataset.oszlop)+1; i < Number(td.dataset.oszlop)+3&&i<8; i++) {
+        if (tablaHatterTar[td.dataset.sor][i].babunev ==  "") {
+            lehetsegesLepesek.push([td.dataset.sor,i])
+        }
+        else{
+            if((tablaHatterTar[td.dataset.sor][i].szin=="feher" && babu.szin=="fekete") ||(tablaHatterTar[td.dataset.sor][i].szin=="fekete" && babu.szin=="feher") )
+            {
+                lehetsegesLepesek.push([td.dataset.sor,i]);
             }
+            break;
+        }
+    }
+    //balra
+    for (let i = Number(td.dataset.oszlop)-1; i >Number(td.dataset.oszlop)-3&&i>-1; i--) {
+        if (tablaHatterTar[td.dataset.sor][i].babunev ==  "") {
+            lehetsegesLepesek.push([td.dataset.sor,i])
+        }
+        else{
+            if((tablaHatterTar[td.dataset.sor][i].szin=="feher" && babu.szin=="fekete") ||(tablaHatterTar[td.dataset.sor][i].szin=="fekete" && babu.szin=="feher") )
+            {
+                lehetsegesLepesek.push([td.dataset.sor,i]);
+            }
+            break;
+        }
+    }
+    //fel
+    for (let i = Number(td.dataset.sor)-1; i >Number(td.dataset.sor)-3&&i>-1; i--) {
+        if (tablaHatterTar[i][td.dataset.oszlop].babunev ==  "") {
+            lehetsegesLepesek.push([i,td.dataset.oszlop])
+        }
+        else{
+            if((tablaHatterTar[i][td.dataset.oszlop].szin=="feher" && babu.szin=="fekete") ||(tablaHatterTar[i][td.dataset.oszlop].szin=="fekete" && babu.szin=="feher") )
+            {
+                lehetsegesLepesek.push([i,td.dataset.oszlop]);
+            }
+            break;
+        }
+    }
+    //le
+    for (let i = Number(td.dataset.sor)+1; i <Number(td.dataset.sor)+3&&i<12; i++) {
+        if (tablaHatterTar[i][td.dataset.oszlop].babunev ==  "") {
+            lehetsegesLepesek.push([i,td.dataset.oszlop])
+        }
+        else{
+            if((tablaHatterTar[i][td.dataset.oszlop].szin=="feher" && babu.szin=="fekete") ||(tablaHatterTar[i][td.dataset.oszlop].szin=="fekete" && babu.szin=="feher") )
+            {
+                lehetsegesLepesek.push([i,td.dataset.oszlop]);
+            }
+            break;
+        }
+    }
+
+    var sor = Number(td.dataset.sor);
+    var oszlop = Number(td.dataset.oszlop);
+
+    // le-jobbra
+    for (let i = 1; i <= 8&&i<3; i++) {
+        if (!lephetEOda(sor+i,oszlop+i)) {
+            break;
+        }
+        if (tablaHatterTar[sor+i][oszlop+i].babunev ==  "") {
+            lehetsegesLepesek.push([sor+i,oszlop+i])
+        }
+        else{
+            if((tablaHatterTar[sor+i][oszlop+i].szin=="feher" && babu.szin=="fekete") ||(tablaHatterTar[sor+i][oszlop+i].szin=="fekete" && babu.szin=="feher") )
+            {
+                lehetsegesLepesek.push([sor+i,oszlop+i]);
+            }
+            break;
+        }
+    }
+    //balra-le
+    for (let i = 1; i <= 8&&i<3; i++) {
+        if (!lephetEOda(sor+i,oszlop-i)) {
+            break;
+        }
+        if (tablaHatterTar[sor+i][oszlop-i].babunev ==  "") {
+            lehetsegesLepesek.push([sor+i,oszlop-i])
+        }
+        else{
+            if((tablaHatterTar[sor+i][oszlop-i].szin=="feher" && babu.szin=="fekete") ||(tablaHatterTar[sor+i][oszlop-i].szin=="fekete" && babu.szin=="feher") )
+            {
+                lehetsegesLepesek.push([sor+i,oszlop-i]);
+            }
+            break;
+        }
+    }
+    //bal-fel
+    for (let i = 1; i <= 8&&i<3; i++) {
+        if (!lephetEOda(sor-i,oszlop-i)) {
+            break;
+        }
+        if (tablaHatterTar[sor-i][oszlop-i].babunev ==  "") {
+            lehetsegesLepesek.push([sor-i,oszlop-i])
+        }
+        else{
+            if((tablaHatterTar[sor-i][oszlop-i].szin=="feher" && babu.szin=="fekete") ||(tablaHatterTar[sor-i][oszlop-i].szin=="fekete" && babu.szin=="feher") )
+            {
+                lehetsegesLepesek.push([sor-i,oszlop-i]);
+            }
+            break;
+        }
+    }
+    //jobb fel
+    for (let i = 1; i <= 8&&i<3; i++) {
+        if (!lephetEOda(sor-i,oszlop+i)) {
+            break;
+        }
+        if (tablaHatterTar[sor-i][oszlop+i].babunev ==  "") {
+            lehetsegesLepesek.push([sor-i,oszlop+i])
+        }
+        else{
+            if((tablaHatterTar[sor-i][oszlop+i].szin=="feher" && babu.szin=="fekete") ||(tablaHatterTar[sor-i][oszlop+i].szin=="fekete" && babu.szin=="feher") )
+            {
+                lehetsegesLepesek.push([sor-i,oszlop+i]);
+            }
+            break;
         }
     }
     console.log(lehetsegesLepesek);
@@ -468,21 +580,89 @@ function katt(td){
         }
         kivalasztott = null;
         kimutat();
-        kor++
+        document.getElementById("joker").disabled=true; 
+        if(jokerNyomvae)
+        {
+            jatekosJoker[kor%2] = true;
+            jokerNyomvae = false;
+        }
+        if(duplaKor[kor%2]==false || !duplaNyomvae){
+            kor++;
+            //ez fogja a stoppert váltani
+        }
+        else{
+            duplaNyomvae = false;
+        }
+
+        if(duplaKor[kor%2]==false)
+        {
+            document.getElementById("dupla").disabled = false;
+        }
+        else
+        {
+            document.getElementById("dupla").disabled = true;
+        }
     }
     else if (tablaHatterTar[td.dataset.sor][td.dataset.oszlop].babunev != "" ) {
         const babu = tablaHatterTar[td.dataset.sor][td.dataset.oszlop];
         if (kor % 2 == 0 && babu.szin == "feher") {
             mozgaseldont(td,babu);
             kivalasztott = [td.dataset.sor,td.dataset.oszlop];
+            jokerNyomvae = false;
+            if(jatekosJoker[kor % 2]==false)
+            {
+                document.getElementById("joker").disabled=false; 
+            }
         }
         else if(kor % 2 == 1 && babu.szin == "fekete"){
             mozgaseldont(td,babu);
             kivalasztott = [td.dataset.sor,td.dataset.oszlop];
+            jokerNyomvae = false;
+            if(jatekosJoker[kor % 2]==false)
+            {
+                document.getElementById("joker").disabled=false; 
+            }
         }
     }
+}
+function jokerGombGen(){
+    let gomb = document.createElement("button");
+    gomb.setAttribute("onclick","joker()");
+    gomb.id="joker";
+    gomb.innerText="Joker";
+    gomb.disabled="true";
+    document.body.appendChild(gomb);
+}
+
+function duplaGombGen(){
+    let gomb = document.createElement("button");
+    gomb.setAttribute("onclick","dupla()");
+    gomb.id="dupla";
+    gomb.innerText="Dupla";
+    gomb.enabled="true";
+    document.body.appendChild(gomb);
+}
+
+function dupla(){
+    duplaNyomvae = true;
+    duplaKor[kor%2]=true;
+    document.getElementById("dupla").disabled = true;
+}
+
+function joker(){
+    jokerNyomvae = true;
+    kimutat();
+    let tabla = document.getElementsByTagName("table")[0];
+    let babu = tablaHatterTar[kivalasztott[0]][kivalasztott[1]];
+    const row = tabla.rows[kivalasztott[0]]
+    const cella = row.cells[kivalasztott[1]]
+    futo_mozog(cella,babu);
+    bastya_mozog(cella,babu);
+    lo_mozog(cella,babu);
 }
 
 tablaGen();
 babuGen();
 kimutat();
+jokerGombGen();
+duplaGombGen();

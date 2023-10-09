@@ -38,3 +38,8 @@ tr:nth-child(even) td:nth-child(even) {
 .fekete{
     color: red !important;
 }
+#joker{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: gray;
+}
