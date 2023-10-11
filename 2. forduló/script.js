@@ -706,7 +706,12 @@ function alapra(){
     document.getElementById("idozito").style.display = "block"
     document.getElementById("stat").style.display = "block"
     temp = document.getElementById("max").value
-    maxKor = Number(temp)*2;
+    temp = Number(temp)*2;
+    if (temp == NaN) {
+        alert("A kör nem lett helyesen megadva")
+        korValaszto();
+    }
+    maxKor = temp
 
     document.getElementById("maxdiv").remove();
 }
@@ -726,10 +731,10 @@ function korValaszto(){
     document.getElementById("stat").style.display = "none"
     pontSzamGen();
     let div = document.createElement("div")
-    div.id = "maxdiv"
+    div.id = "maxdiv";
     let input = document.createElement("input");
-    input.id = "max"
-    input.type = "text";
+    input.id = "max";
+    input.type = "number";
     let gomb = document.createElement("button");
     gomb.setAttribute("onclick","main()");
     gomb.id="korValaszto";
@@ -747,19 +752,23 @@ function nyertEvalaki(){
     let feherPont = 0;
     let feketePont = 0;
 
-    for(let i =0; i<tablaHatterTar;i++)
+    for(let i =0; i<tablaHatterTar.length;i++)
     {
-        if(tablaHatterTar[i].szin=="feher")
-        {
-            feherBabu.push(tablaHatterTar[i]);
-            feherPont+=tablaHatterTar[i].pont;
-        }
-        else
-        {
-            feketeBabu.push(tablaHatterTar[i]);
-            feketeBabu+=tablaHatterTar[i].pont;
+        for (let j = 0; j < tablaHatterTar[0].length; j++) {
+            console.log(tablaHatterTar[i][j]);
+            if(tablaHatterTar[i][j].szin=="feher")
+            {
+                feherBabu.push(tablaHatterTar[i][j]);
+                feherPont+=tablaHatterTar[i][j].pont;
+            }
+            else
+            {
+                feketeBabu.push(tablaHatterTar[i][j]);
+                feketePont+=tablaHatterTar[i][j].pont;
+            }
         }
     }
+    console.log(feherPont,feketePont)
     document.getElementById("fehpont").innerText="Fehér pontjai: "+feherPont;
     document.getElementById("fekpont").innerText="Fekete pontjai: "+feketePont;
 
@@ -770,11 +779,12 @@ function nyertEvalaki(){
     {
         document.getElementById("soron").innerText="Fekete köre";
     }
-    if(feherBabu.length==0)
+    
+    if(feherPont==0)
     {
         document.getElementById("jatekosNyert").innerText="Fehér nyert!";
     }
-    else if(feketeBabu.length==0)
+    else if(feketePont==0)
     {
         document.getElementById("jatekosNyert").innerText="Fekete nyert!";
     }
