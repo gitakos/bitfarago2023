@@ -650,10 +650,17 @@ let idozito;
 let mp = 0;
 let perc = 0;
 
+function korszamlalo(){
+    if (kor % 2 == 0 && kor != maxKor) {
+        document.getElementById("korszamlalo").innerHTML =maxKor/2 +"/"+ ((kor/2)+1) + ". Kor";
+    }
+}
+
 function stopper() {
     clearInterval(idozito);
     mp = 0;
     perc = 0;
+    korszamlalo();
     idozito = setInterval(megjelenit, 1000);
 }
 
@@ -726,6 +733,7 @@ function main(){
     kimutat();
     jokerGombGen();
     duplaGombGen();
+    korszamlalo();
     nyertEvalaki();
 }
 
@@ -741,7 +749,6 @@ function korValaszto(){
     input.min = 10;
     input.max = 100;
     input.value = 25;
-
 
     let gomb = document.createElement("button");
     gomb.setAttribute("onclick","main()");

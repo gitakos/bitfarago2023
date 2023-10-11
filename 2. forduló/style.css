@@ -2,6 +2,7 @@ body{
     background-image: url(kepek/hatter.png);
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: black;
 }
 
 table {
@@ -40,9 +41,6 @@ tr:nth-child(even):hover td:nth-child(even):hover {
 tr:nth-child(odd) td:nth-child(odd),
 tr:nth-child(even) td:nth-child(even) {
     background-color: white;
-}
-#hehe{
-    color: white;
 }
 
 #joker, 
