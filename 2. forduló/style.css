@@ -99,6 +99,11 @@ tr:nth-child(even) td:nth-child(even) {
     width: fit-content;
 }
 
+#korszamlalo{
+    margin: auto;
+    width: fit-content;
+}
+
 #maxdiv{
     position: absolute;
     top: 50%;

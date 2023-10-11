@@ -608,6 +608,7 @@ function katt(td){
         }
         if(duplaKor[kor%2]==false || !duplaNyomvae){
             kor++;
+            korszamlalo();
             stopper(); //----------------------timer-----------------------
         }
         else{
@@ -660,7 +661,6 @@ function stopper() {
     clearInterval(idozito);
     mp = 0;
     perc = 0;
-    korszamlalo();
     idozito = setInterval(megjelenit, 1000);
 }
 
