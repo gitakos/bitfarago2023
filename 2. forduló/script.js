@@ -779,20 +779,33 @@ function nyertEvalaki(){
     {
         document.getElementById("soron").innerText="Fekete köre";
     }
-    
+
     if(feherPont==0)
     {
-        document.getElementById("jatekosNyert").innerText="Fehér nyert!";
+        setTimeout(function() {
+            alert("A fehér játékos nyert");
+            location.reload();
+        }, 100);
+
     }
-    else if(feketePont==0)
+    if(feketePont==0)
+    {   
+        setTimeout(function() {
+            alert("A fekete játékos nyert");
+            location.reload();
+        }, 100);
+    }
+
+    if(kor==maxKor)
     {
-        document.getElementById("jatekosNyert").innerText="Fekete nyert!";
+        {
+            setTimeout(function() {
+                alert("Döntetlen");
+                location.reload();
+        }, 100);
     }
-    if(kor==Number(maxKor)){
-        document.getElementById("jatekosNyert").innerText="Döntetlen!";
     }
 }
-
 function pontSzamGen(){
     let pontdiv = document.getElementById("pontszam")
 
