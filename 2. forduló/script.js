@@ -134,6 +134,9 @@ function kimutat() {
                 kep.src = "kepek/"+element.szin+"_"+element.babunev+"_sima.png"
                 kep.className = "babuKep";
                 cella.appendChild(kep)
+                if (element.mj == true) {
+                    cella.classList+= "mj";
+                }
             }
         }
     }
@@ -707,9 +710,9 @@ function alapra(){
     document.getElementById("stat").style.display = "block"
     temp = document.getElementById("max").value
     temp = Number(temp)*2;
-    if (temp == NaN) {
-        alert("A kör nem lett helyesen megadva")
-        korValaszto();
+    if (temp < 20) {
+        alert("A kör nem lett helyesen megadva, a minimum érték 10, a maximum érték 100");
+        location.reload();
     }
     maxKor = temp
 
@@ -735,10 +738,14 @@ function korValaszto(){
     let input = document.createElement("input");
     input.id = "max";
     input.type = "number";
+    input.min = 10;
+    input.max = 100;
+    input.value = 25;
+
+
     let gomb = document.createElement("button");
     gomb.setAttribute("onclick","main()");
     gomb.id="korValaszto";
-    input.innerHTML += "<br>";//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     gomb.innerText="Körök megadása!";
     gomb.enabled="true";
     div.appendChild(input);
@@ -819,5 +826,4 @@ function pontSzamGen(){
     ujrainditgomb.setAttribute("onclick","location.reload()");
     pontdiv.appendChild(ujrainditgomb);
 }
-
 korValaszto();
