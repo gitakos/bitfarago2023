@@ -1,5 +1,20 @@
 canvas{
     border: 1px solid black;
-    width: 400px; 
-    height: 200px;
+    image-rendering: optimizeQuality;
+}
+
+#jatek{
+    width: 900px; 
+    height: 900px;
+}
+#minta{
+    width: 450px; 
+    height: 450px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#jatekter{
+    display: flex;
+    justify-content: space-evenly;
 }

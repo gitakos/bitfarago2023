@@ -1,33 +1,34 @@
-const canvas = document.getElementById("minta");
-const ctx = canvas.getContext("2d");
+const canvasMinta = document.getElementById("minta");
+const ctxMinta = canvasMinta.getContext("2d");
+const imgMinta = document.createElement("img");
+canvasMinta.height = 450;
+canvasMinta.width = 450;
+imgMinta.src="kepek/alaptorta.png";
 
-function drawCircle() {
-  const canvasWidth = canvas.width;
-  const canvasHeight = canvas.height;
+const canvasJatek = document.getElementById("jatek");
+const ctxJatek = canvasJatek.getContext("2d");
+const imgJatek = document.createElement("img");
+canvasJatek.height = 900;
+canvasJatek.width = 900;
+imgJatek.src="kepek/alaptorta.png";
+//document.body.appendChild(img);
 
-  // Calculate circle position at the center of the canvas
-  const circleX = canvasWidth / 2; // Center X
-  const circleY = canvasHeight / 2; // Center Y
-  const circleRadius = 70;
+function tortaRajz(img,ctx,canvas,szel,mag) {
+    const canvasWidth = canvas.width;
+    const canvasHeight = canvas.height;
 
-  // Clear canvas
-  ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    const imageX = (canvasWidth - szel)/2; // Center X
+    const imageY = (canvasHeight - mag)/2; // Center Y
 
-  // Begin drawing
-  ctx.beginPath();
-  ctx.arc(circleX, circleY, circleRadius, 0, 2 * Math.PI);
-  ctx.stroke();
+    console.log(imageX,imageY)
+    ctx.drawImage(img, imageX, imageY,szel,mag);
+    console.log(img,ctx,canvas,szel,mag);
 }
 
-// Initial draw
-drawCircle();
+imgMinta.onload = function(){
+    tortaRajz(imgMinta,ctxMinta,canvasMinta,450,450);
+    tortaRajz(imgJatek,ctxJatek,canvasJatek,900,900);
+}
 
-// Handle window resize
-window.addEventListener("resize", () => {
-  // Update canvas size
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
 
-  // Redraw the circle at the center of the canvas after resizing
-  drawCircle();
-});
+
