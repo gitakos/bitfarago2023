@@ -13,8 +13,34 @@ canvas{
     margin-top: auto;
     margin-bottom: auto;
 }
+h1{
+    width: fit-content;
+    margin: auto;
+}
+#nehezsegszintek{
+    width: fit-content;
+    margin: auto;
+}
 
 #jatekter{
     display: flex;
     justify-content: space-evenly;
+}
+#lerakhato_elemek{
+    width: 100%;
+    height: 500px;
+    background-color: aqua;
+
+}
+#lerakhato_elemek{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.alapkep{
+    margin: 10px;
+    border-radius: 5px;
+
+    border: solid black 1px;
 }
