@@ -1,3 +1,9 @@
+body{
+    background-image: url("kepek/hatter.jpg");
+    background-repeat: repeat;
+
+}
+
 canvas{
     border: 1px solid black;
     image-rendering: optimizeQuality;
@@ -26,12 +32,7 @@ h1{
     display: flex;
     justify-content: space-evenly;
 }
-#lerakhato_elemek{
-    width: 100%;
-    height: 500px;
-    background-color: aqua;
 
-}
 #lerakhato_elemek{
     display: flex;
     justify-content: center;
@@ -43,4 +44,62 @@ h1{
     border-radius: 5px;
 
     border: solid black 1px;
+}
+#resetGomb
+{
+    margin-left: 65%;
+    background-color: rgba(255, 255, 255, 0.5); 
+    border: 5px solid #000; 
+    border-radius: 10px;
+    height: 60px;
+    width: 150px;
+    font-size: large;
+
+}
+#pontozGomb{
+    margin-left: 65%;
+    background-color: rgba(255, 255, 255, 0.5); 
+    border: 5px solid #000; 
+    border-radius: 10px;
+    height: 60px;
+    width: 150px;
+    font-size: large;
+
+}
+#start{
+    margin-left: 10px;
+    background-color: rgba(255, 255, 255, 0.5); 
+    border: 5px solid #000; 
+    border-radius: 10px;
+    height: 60px;
+    width: 150px;
+    font-size: large;
+}
+
+#nehezsegszintek{
+    background-color: rgba(255, 255, 255, 0.5); 
+    border: 5px solid #000; 
+    border-radius: 10px;
+    height: 60px;
+    width: 150px;
+    font-size: large;
+}
+
+#lerakhato_elemek {
+    margin: auto;
+    width: fit-content;
+    height: 500px;
+    background-color: rgba(255, 255, 255, 0.5); 
+    border: 5px solid #000; 
+    border-radius: 10px;
+}
+#kiertekeles{
+    width: 100%;
+    height: 500px;
+    background-color: green;
+}
+#jatek_leiras{
+    width: 100%;
+    height: 500px;
+    background-color: red;
 }

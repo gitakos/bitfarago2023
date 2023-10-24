@@ -18,16 +18,19 @@ let nehezLista =[
         nehezsegNev: "konnyu",
         hanyDisz: 5,
         helyezesek: new Array(),
+        felhasznaloLerakott: new Array(),
     },
     {
         nehezsegNev: "kozepes",
         hanyDisz: 10,
         helyezesek: new Array(),
+        felhasznaloLerakott: new Array(),
     },
     {
         nehezsegNev: "nehez",
         hanyDisz: 15,
         helyezesek: new Array(),
+        felhasznaloLerakott: new Array(),
     }
 ]
 
@@ -58,9 +61,9 @@ function random(min, max) {
 function indit(gomb){
     nehezseg = nehezLista.findIndex((c)=>c.nehezsegNev == document.getElementById("nehezseg").value);
     nehezseg = nehezLista[nehezseg];
-    console.log("rajta cigányok!");
     keprekurziv(0,nehezseg.hanyDisz)
     gomb.disabled = "true";
+    eventRak();
 }
 function keprekurziv(i,limit){
     if(i==limit)
@@ -113,38 +116,83 @@ function keplerakas(){
         var kep = document.createElement("img");
         kep.src = kepek[i];
         kep.className = "alapkep";
-        kep.style.width = "200px";
-        kep.style.height = "200px";
+        kep.style.width = "100px";
+        kep.style.height = "100px";
+        kep.id=i+"_kep";
+        // Set up the dragstart event on the image
+        kep.addEventListener('dragstart', function (e) {
+            // Set the drag data to be the image's ID
+            console.log(this.id)
+            var scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
+            e.dataTransfer.setData('kepId', this.id);
+            console.log("szar!4343",e.clientX-this.offsetLeft);
+            console.log("szar!4343",e.clientY-this.offsetTop+Number(scrollTop));
+            e.dataTransfer.setData('kepOffsetX', e.clientX-this.offsetLeft);
+            e.dataTransfer.setData('kepOffsetY', e.clientY-(this.offsetTop-Number(scrollTop)));
+            // e.dataTransfer.setData('ranyomOffest',kep.)
+        });
 
         div.appendChild(kep);
     }
 }
 keplerakas();
 
+function ResetGomb(){
+    //törlés aztán újra rajz
+    ctxJatek.globalCompositeOperation = 'destination-out';
+    ctxJatek.fillRect(0, 0, canvasJatek.width, canvasJatek.height);
+    ctxJatek.globalCompositeOperation = 'source-over';
+    tortaRajz(imgJatek,ctxJatek,canvasJatek,900,900);
+}
+
+function PontozGomb(){
+    for(let i= 0;i<nehezseg.helyezesek.length;i++)
+    {
+        let elem = pontozas_legkoz(nehezseg.helyezesek[i]);
+    }
+}
+
+function eventRak(){
+    // Prevent the default behavior for dragover and drop events
+    canvasJatek.addEventListener('dragover',function (e) {
+        e.preventDefault();
+    });
+
+    canvasJatek.addEventListener('drop',function (e) {
+        e.preventDefault();
+        var scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
+        console.log(scrollTop);
+        // Get the ID of the dragged image from the drag data
+        const draggedImageId = e.dataTransfer.getData('kepId');
+        const kepOffsetX = e.dataTransfer.getData('kepOffsetX');
+        const kepOffsetY = e.dataTransfer.getData('kepOffsetY');
+        const draggedImage = document.getElementById(draggedImageId);
+
+        // Get the mouse coordinates relative to the canvas
+        console.log(canvasJatek.offsetLeft,canvasJatek.offsetTop)
+        console.log(e.clientX,e.clientY);
+
+        const x = e.clientX - canvasJatek.offsetLeft-Number(kepOffsetX);
+        const y = e.clientY - canvasJatek.offsetTop+scrollTop-Number(kepOffsetY);
+        nehezseg.felhasznaloLerakott.push({x,y,draggedImageId});
+        console.log(nehezseg.felhasznaloLerakott)
+
+        // Draw the image onto the canvas at the mouse coordinates
+        ctxJatek.drawImage(draggedImage, x, y, draggedImage.width, draggedImage.height);
+    });
+}
 
 
-// Set up the dragstart event on the image
-image.addEventListener('dragstart', (e) => {
-    // Set the drag data to be the image's ID
-    e.dataTransfer.setData('text/plain', image.id);
-});
-
-// Prevent the default behavior for dragover and drop events
-canvas.addEventListener('dragover', (e) => {
-    e.preventDefault();
-});
-
-canvas.addEventListener('drop', (e) => {
-    e.preventDefault();
-
-    // Get the ID of the dragged image from the drag data
-    const draggedImageId = e.dataTransfer.getData('text/plain');
-    const draggedImage = document.getElementById(draggedImageId);
-
-    // Get the mouse coordinates relative to the canvas
-    const x = e.clientX - canvas.offsetLeft;
-    const y = e.clientY - canvas.offsetTop;
-
-    // Draw the image onto the canvas at the mouse coordinates
-    ctx.drawImage(draggedImage, x, y, draggedImage.width, draggedImage.height);
-});
+function pontozas_legkoz(koordinata){
+    let min = 99999999999;
+    let elem = undefined;
+    for(let i = 0;i <nehezseg.felhasznaloLerakott.length;i++)
+    {
+        var temp = Math.sqrt(Math.pow(koordinata.x - nehezseg.felhasznaloLerakott[i].x,2) + Math.pow(koordinata.y - nehezseg.felhasznaloLerakott[i].y,2));
+        if (temp < min){
+            min = temp;
+            elem = nehezseg.felhasznaloLerakott[i];
+        }
+    }
+    return(elem);
+}
