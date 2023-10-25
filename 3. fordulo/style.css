@@ -74,12 +74,29 @@ h1{
 }
 #start{
     margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
     background-color: rgba(255, 255, 255, 0.5); 
     border: 5px solid #000; 
     border-radius: 10px;
     height: 60px;
     width: 150px;
     font-size: large;
+}
+#timer{
+    margin-left: 10px;
+    background-color: rgba(255, 255, 255, 0.5); 
+    border: 5px solid #000; 
+    border-radius: 10px;
+    height: 60px;
+    width: 150px;
+    font-size: large;
+    margin: auto;
+}
+
+#stopper{
+    text-align: center;
+    vertical-align: middle;
 }
 
 select{
@@ -101,6 +118,17 @@ select{
     border-radius: 10px;
 }
 #jatek_leiras{
+    margin-top: 10px !important; 
+    margin: auto;
+    width: fit-content;
+    height: auto;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.5); 
+    border: 5px solid #000; 
+    border-radius: 10px;
+}
+
+#leaderboard{
     margin-top: 10px !important; 
     margin: auto;
     width: fit-content;

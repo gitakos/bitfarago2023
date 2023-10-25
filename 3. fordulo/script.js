@@ -12,7 +12,6 @@ canvasJatek.height = 900;
 canvasJatek.width = 900;
 imgJatek.src="kepek/alaptorta.png";
 var kepek = ["kepek/csokikocka.png","kepek/csokiskeksz.png","kepek/gyertya.png","kepek/marcipan_elefant.png","kepek/marcipan_macska.png","kepek/marcipan_maci.png","kepek/nyaloka.png"];
-//document.body.appendChild(img);
 let nehezLista =[
     {
         nehezsegNev: "konnyu",
@@ -42,10 +41,7 @@ function tortaRajz(img,ctx,canvas,szel,mag) {
 
     const imageX = (canvasWidth - szel)/2; // Center X
     const imageY = (canvasHeight - mag)/2; // Center Y
-
-    console.log(imageX,imageY)
     ctx.drawImage(img, imageX, imageY,szel,mag);
-    console.log(img,ctx,canvas,szel,mag);
 }
 
 imgMinta.onload = function(){
@@ -57,6 +53,21 @@ function random(min, max) {
     return Math.floor(Math.random() * (max - min) ) + min;
 }
 
+function megjelenit() {
+    mp++;
+    if (mp == 60) {
+        mp = 0;
+        perc++;
+    }
+    let p = document.getElementById("stopper");
+    percStr = perc.toString().padStart(2, '0');
+    mpStr = mp.toString().padStart(2, '0');
+    p.innerText = percStr + ":" + mpStr;
+}
+
+let idozito;
+let mp = 0;
+let perc = 0;
 
 function indit(gomb){
     nehezseg = nehezLista.findIndex((c)=>c.nehezsegNev == document.getElementById("nehezseg").value);
@@ -64,6 +75,12 @@ function indit(gomb){
     keprekurziv(0,nehezseg.hanyDisz)
     gomb.disabled = "true";
     eventRak();
+    //timer start + reset
+    clearInterval(idozito);
+    mp = 0;
+    perc = 0;
+    idozito = setInterval(megjelenit, 1000);
+    document.getElementById("stopper").innerText = "00:00";
 }
 function keprekurziv(i,limit){
     if(i==limit)
@@ -88,12 +105,11 @@ function checkForOverlap(ujk) {
     const distance = Math.sqrt(
       Math.pow(coords.position.x - ujk.x, 2) + Math.pow(coords.position.y - ujk.y, 2)
     );
-    // Set a minimum distance to consider as non-overlapping
     if (distance < 50) {
-      return true; // Overlapping
+      return true;
     }
   }
-  return false; // Non-overlapping
+  return false;
 }
 
 function randomPozicio(canvas, image) {
@@ -119,9 +135,7 @@ function keplerakas(){
         kep.style.width = "100px";
         kep.style.height = "100px";
         kep.id=i+"_kep";
-        // Set up the dragstart event on the image
         kep.addEventListener('dragstart', function (e) {
-            // Set the drag data to be the image's ID
             var scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
             e.dataTransfer.setData('kepId', this.id);
             e.dataTransfer.setData('kepOffsetX', e.clientX-this.offsetLeft);
@@ -147,7 +161,6 @@ function PontozGomb(){
     for(let i= 0;i<nehezseg.helyezesek.length;i++)
     {
         let elem = pontozas_legkoz(nehezseg.helyezesek[i]);
-        console.log(elem);
         if(document.getElementById(elem.elem.draggedImageId).src==nehezseg.helyezesek[i].kep.src)
         {
             tavolsagok.push(Math.floor(elem.min));
@@ -155,20 +168,19 @@ function PontozGomb(){
         else{
             tavolsagok.push(900);
         }
-        console.log(elem);
     }
-    console.log(tavolsagok.reduce((partialSum, a) => partialSum + a, 0));
     vegsoPontozas(tavolsagok.reduce((partialSum, a) => partialSum + a, 0));
+    clearInterval(idozito);
+    mp = 0;
+    perc = 0;
 }
 
 function vegsoPontozas(pontszam){
     let eredmeny = nehezseg.helyezesek.length*900-pontszam;
     let gg = Math.floor(eredmeny/(nehezseg.helyezesek.length*900)*1000);
-    /*var eredmeny_temp = nehezseg.helyezesek.length*900-pontszam;
-    var hihi = Math.floor(eredmeny_temp/nehezseg.helyezesek.length);
-    var gg = 1000*(Math.floor(hihi/900));*/
+    ranglista(gg);
     alert("az ön pontszáma: 1000/"+gg);
-    location.reload();
+    restart();
 }
 
 function eventRak(){
@@ -180,7 +192,6 @@ function eventRak(){
     canvasJatek.addEventListener('drop',function (e) {
         e.preventDefault();
         var scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
-        console.log(scrollTop);
         // Get the ID of the dragged image from the drag data
         const draggedImageId = e.dataTransfer.getData('kepId');
         const kepOffsetX = e.dataTransfer.getData('kepOffsetX');
@@ -188,13 +199,10 @@ function eventRak(){
         const draggedImage = document.getElementById(draggedImageId);
 
         // Get the mouse coordinates relative to the canvas
-        console.log(canvasJatek.offsetLeft,canvasJatek.offsetTop)
-        console.log(e.clientX,e.clientY);
 
         const x = e.clientX - canvasJatek.offsetLeft-Number(kepOffsetX);
         const y = e.clientY - canvasJatek.offsetTop+scrollTop-Number(kepOffsetY);
         nehezseg.felhasznaloLerakott.push({x,y,draggedImageId});
-        console.log(nehezseg.felhasznaloLerakott)
 
         // Draw the image onto the canvas at the mouse coordinates
         ctxJatek.drawImage(draggedImage, x, y, draggedImage.width, draggedImage.height);
@@ -203,7 +211,6 @@ function eventRak(){
 
 
 function pontozas_legkoz(koordinata){
-    console.log(koordinata);
     let min = 99999999999;
     let elem = undefined;
     for(let i = 0; i <nehezseg.felhasznaloLerakott.length;i++)
@@ -215,4 +222,37 @@ function pontozas_legkoz(koordinata){
         }
     }
     return({elem,min});
+}
+
+function ranglista(pont){
+    let div = document.getElementById(nehezseg.nehezsegNev);
+    let legjobbPont = div.innerText.split(" ")[0];
+    if(div.innerHTML=="xxx xx:xx")
+    {
+        div.innerHTML="";
+        let par = document.createElement("p");
+        par.innerText=pont+" "+document.getElementById("stopper").innerHTML;
+        div.appendChild(par);
+    }
+    else if(Number(legjobbPont) < Number(pont)){
+        div.innerHTML="";
+        let par = document.createElement("p");
+        par.innerText=pont+" "+document.getElementById("stopper").innerHTML;
+        div.appendChild(par);
+    }
+}
+
+function restart(){
+    nehezseg.helyezesek = new Array();
+    nehezseg.felhasznaloLerakott = new Array();
+    nehezseg = 0;
+
+    ctxMinta.globalCompositeOperation = 'destination-out';
+    ctxMinta.fillRect(0, 0, canvasMinta.width, canvasMinta.height);
+    ctxMinta.globalCompositeOperation = 'source-over';
+    tortaRajz(imgMinta,ctxMinta,canvasMinta,450,450);
+
+    ResetGomb();
+    
+    document.getElementById("start").disabled=false;
 }
