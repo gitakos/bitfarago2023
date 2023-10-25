@@ -20,7 +20,7 @@
     <title>Tortás Játék</title>
 </head>
 <body>
-    <h1>Cím</h1>
+    <h1>Erre_iszunk csapat cukrászda</h1>
     <div id="nehezsegszintek">
       <select name="nehezseg" id="nehezseg">
         <option value="konnyu">Könnyű</option>
@@ -28,7 +28,7 @@
         <option value="nehez">Nehéz</option>
       </select>
 
-      <button id="start" onclick="indit(this)">Zsamo!!!</button>
+      <button id="start" onclick="indit(this)">Start</button>
     </div>
     <div id="jatekter">
 
@@ -39,11 +39,10 @@
         
       </canvas>
     </div>
-    <button id="resetGomb" onclick="ResetGomb()">Reset</button>
-    <br>
-    <button id="pontozGomb" onclick="PontozGomb()">Beküldés</button>
-    <br>  
-    
+    <div class="gombok">
+      <button id="resetGomb" onclick="ResetGomb()">Reset</button>
+      <button id="pontozGomb" onclick="PontozGomb()">Beküldés</button>
+    </div>
     <div id="lerakhato_elemek"></div>
     <div id="jatek_leiras">
       <h1>Jatek szabalyok</h1>

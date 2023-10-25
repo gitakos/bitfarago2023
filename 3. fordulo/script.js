@@ -83,10 +83,10 @@ function keprekurziv(i,limit){
 }
 
 
-function checkForOverlap(newCoordinates) {
+function checkForOverlap(ujk) {
   for (const coords of nehezseg.helyezesek) {
     const distance = Math.sqrt(
-      Math.pow(coords.position.x - newCoordinates.x, 2) + Math.pow(coords.position.y - newCoordinates.y, 2)
+      Math.pow(coords.position.x - ujk.x, 2) + Math.pow(coords.position.y - ujk.y, 2)
     );
     // Set a minimum distance to consider as non-overlapping
     if (distance < 50) {
