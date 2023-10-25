@@ -73,7 +73,7 @@ function keprekurziv(i,limit){
     var kep = document.createElement("img");
     kep.src = kepek[random(0,kepek.length)]; 
     var position = randomPozicio(canvasMinta, kep);
-    nehezseg.helyezesek.push(position);
+    nehezseg.helyezesek.push({position,kep});
     kep.onload = function(){
         ctxMinta.shadowColor = "black";
         ctxMinta.shadowBlur = 15;
@@ -86,7 +86,7 @@ function keprekurziv(i,limit){
 function checkForOverlap(newCoordinates) {
   for (const coords of nehezseg.helyezesek) {
     const distance = Math.sqrt(
-      Math.pow(coords.x - newCoordinates.x, 2) + Math.pow(coords.y - newCoordinates.y, 2)
+      Math.pow(coords.position.x - newCoordinates.x, 2) + Math.pow(coords.position.y - newCoordinates.y, 2)
     );
     // Set a minimum distance to consider as non-overlapping
     if (distance < 50) {
@@ -122,11 +122,8 @@ function keplerakas(){
         // Set up the dragstart event on the image
         kep.addEventListener('dragstart', function (e) {
             // Set the drag data to be the image's ID
-            console.log(this.id)
             var scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
             e.dataTransfer.setData('kepId', this.id);
-            console.log("szar!4343",e.clientX-this.offsetLeft);
-            console.log("szar!4343",e.clientY-this.offsetTop+Number(scrollTop));
             e.dataTransfer.setData('kepOffsetX', e.clientX-this.offsetLeft);
             e.dataTransfer.setData('kepOffsetY', e.clientY-(this.offsetTop-Number(scrollTop)));
             // e.dataTransfer.setData('ranyomOffest',kep.)
@@ -146,10 +143,32 @@ function ResetGomb(){
 }
 
 function PontozGomb(){
+    let tavolsagok = new Array();
     for(let i= 0;i<nehezseg.helyezesek.length;i++)
     {
         let elem = pontozas_legkoz(nehezseg.helyezesek[i]);
+        console.log(elem);
+        if(document.getElementById(elem.elem.draggedImageId).src==nehezseg.helyezesek[i].kep.src)
+        {
+            tavolsagok.push(Math.floor(elem.min));
+        }
+        else{
+            tavolsagok.push(900);
+        }
+        console.log(elem);
     }
+    console.log(tavolsagok.reduce((partialSum, a) => partialSum + a, 0));
+    vegsoPontozas(tavolsagok.reduce((partialSum, a) => partialSum + a, 0));
+}
+
+function vegsoPontozas(pontszam){
+    let eredmeny = nehezseg.helyezesek.length*900-pontszam;
+    let gg = Math.floor(eredmeny/(nehezseg.helyezesek.length*900)*1000);
+    /*var eredmeny_temp = nehezseg.helyezesek.length*900-pontszam;
+    var hihi = Math.floor(eredmeny_temp/nehezseg.helyezesek.length);
+    var gg = 1000*(Math.floor(hihi/900));*/
+    alert("az ön pontszáma: 1000/"+gg);
+    location.reload();
 }
 
 function eventRak(){
@@ -184,15 +203,16 @@ function eventRak(){
 
 
 function pontozas_legkoz(koordinata){
+    console.log(koordinata);
     let min = 99999999999;
     let elem = undefined;
-    for(let i = 0;i <nehezseg.felhasznaloLerakott.length;i++)
+    for(let i = 0; i <nehezseg.felhasznaloLerakott.length;i++)
     {
-        var temp = Math.sqrt(Math.pow(koordinata.x - nehezseg.felhasznaloLerakott[i].x,2) + Math.pow(koordinata.y - nehezseg.felhasznaloLerakott[i].y,2));
+        var temp = Math.sqrt(Math.pow(koordinata.position.x*2 - nehezseg.felhasznaloLerakott[i].x,2) + Math.pow(koordinata.position.y*2 - nehezseg.felhasznaloLerakott[i].y,2));
         if (temp < min){
             min = temp;
             elem = nehezseg.felhasznaloLerakott[i];
         }
     }
-    return(elem);
+    return({elem,min});
 }

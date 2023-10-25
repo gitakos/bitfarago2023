@@ -76,7 +76,7 @@ h1{
     font-size: large;
 }
 
-#nehezsegszintek{
+select{
     background-color: rgba(255, 255, 255, 0.5); 
     border: 5px solid #000; 
     border-radius: 10px;
@@ -101,5 +101,4 @@ h1{
 #jatek_leiras{
     width: 100%;
     height: 500px;
-    background-color: red;
 }
