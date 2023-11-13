@@ -1,0 +1,16 @@
+.cella{
+    height: 100px;
+    width: 100px;
+    background-color: red;
+    border: 1px solid yellow;
+}
+.fal{
+    background-color: black !important;
+}
+.cel{
+    background-color: purple !important;
+}
+.sor{
+    display: flex;
+    justify-content:center;
+}
